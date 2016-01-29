@@ -1,0 +1,45 @@
+html {
+  margin: 0; padding: 0;
+}
+
+body {
+  margin: 0; padding: 0;
+  font-family: "Helvetica";
+  font-size: 1rem;
+  line-height: 1.2rem;
+  color: #e5ad3c;
+
+  background-color: #59030D;
+}
+
+header {
+  padding: 1em 5%;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #37020A;
+}
+
+header h1 {
+  margin: 0; padding: 0;
+  font-size: 4rem;
+  line-height: 1em;
+  color: #A30B0B;
+}
+
+main {
+  background-color: rgb(230, 230, 230);
+  color: black;
+  box-sizing: border-box;
+}
+
+
+article {
+  margin: auto; padding: 1em 5%;
+  max-width: 1000px;
+  box-sizing: border-box;
+}
+
+footer {
+  padding: 0 5%;
+  text-align: center;
+}
