@@ -14,9 +14,3 @@ export default {
   components: { VHours }
 }
 </script>
-
-<style>
-main {
-  padding: 0 2em 2em;
-}
-</style>

@@ -28,8 +28,6 @@ export default {
 
 <style scoped>
 .menu-container {
-  padding: 0 1em 5em;
-  box-sizing: border-box;
   font-family: "Libre Baskerville";
 }
 h1 {

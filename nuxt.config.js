@@ -4,5 +4,8 @@ module.exports = {
   loading: false,
   transition: {
     mode: "in-out"
+  },
+  router: {
+    scrollBehavior: () => false
   }
 }

@@ -43,16 +43,25 @@ header {
 
 main {
   background-color: rgb(255, 249, 235);
-  min-height: 100vh;
+  height: 100vh;
+  padding: 0 1em;
   box-sizing: border-box;
   width: var(--main-content-width);
   overflow: hidden;
 
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
+  overflow: auto;
 
   z-index: 2;
+}
+/* Firefox doesn't scroll the bottom padding of an overflow: auto container.
+ * This is a workaround */
+main::after {
+  content: "";
+  display: block;
+  height: 5em;
 }
 
 main.page-enter {
@@ -95,6 +104,7 @@ main.fade-enter-to {
   main {
     position: static;
     width: 100%;
+    height: auto;
   }
 
   main.page-enter,
