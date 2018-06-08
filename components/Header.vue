@@ -25,4 +25,11 @@ header {
     transform: translateX(calc(-1 / 2 * var(--vertical-carousel-width)));
   }
 }
+@media (max-width: 45em) {
+  header,
+  .mainContentShown {
+    position: static;
+    transform: none;
+  }
+}
 </style>

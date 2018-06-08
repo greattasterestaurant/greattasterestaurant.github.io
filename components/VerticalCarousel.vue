@@ -30,4 +30,13 @@ export default {
   max-height: 100vh;
   overflow: auto;
 }
+
+@media (max-width: 45em) {
+  .vertical-carousel-container {
+    width: 100%;
+    height: 12em;
+    position: static;
+    overflow: auto;
+  }
+}
 </style>

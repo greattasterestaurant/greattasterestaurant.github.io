@@ -26,6 +26,8 @@ export default {
   display: flex;
   flex-direction: column;
 
+  -webkit-overflow-scrolling: touch;
+
   /* The width of this component is currently a vw unit. So we'll keep our gap
    * that way to stay proportional. */
   --vertical-carousel-gap: 2vw;
@@ -67,5 +69,35 @@ img {
 }
 .img-container:hover .explanation {
   opacity: 1;
+}
+
+@media (max-width: 45em) {
+  .vertical-carousel {
+    flex-direction: row;
+    height: 100%;
+    overflow-x: auto;
+  }
+  .img-container {
+    margin: 0 calc(-1 * var(--vertical-carousel-gap));
+    flex: 0 0 auto;
+    height: 100%;
+    width: auto;
+  }
+  img {
+    height: 100%;
+    width: auto;
+  }
+  .img-container:hover {
+    margin: 0 var(--vertical-carousel-gap);
+  }
+  .img-container:first-child {
+    margin-left: 0;
+  }
+  .img-container:hover {
+    margin: 0 var(--vertical-carousel-gap) 0 0;
+  }
+  .img-container:last-child:hover {
+    margin: 0;
+  }
 }
 </style>
