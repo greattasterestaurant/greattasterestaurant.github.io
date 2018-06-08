@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .menu-container {
-  padding: 0 1em 1em;
+  padding: 0 1em 5em;
   box-sizing: border-box;
   font-family: "Libre Baskerville";
 }
@@ -59,5 +59,41 @@ li {
 .price {
   text-align: right;
   color: #711d1d;
+}
+
+@media (max-width: 85em) {
+  ul {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 70em) {
+  ul {
+    font-size: 0.8em;
+  }
+}
+@media (max-width: 62em) {
+  .menu-container {
+    padding-left: calc((100% - 55em) / 2);
+    padding-right: calc((100% - 55em) / 2);
+  }
+  ul {
+    font-size: 1em;
+  }
+}
+@media (max-width: 55em) {
+  ul {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 47em) {
+  ul {
+    font-size: 1em;
+    grid-template-columns: 1fr 3fr;
+  }
+}
+@media (max-width: 30em) {
+  ul {
+    font-size: 0.8em;
+  }
 }
 </style>

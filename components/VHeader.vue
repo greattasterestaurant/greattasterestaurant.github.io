@@ -1,5 +1,5 @@
 <template>
-  <header :class="{ shrink }">
+  <header>
     <div class="logo-nav-container">
       <VLogo />
       <VNav />
@@ -13,17 +13,12 @@ import VFooter from "@/components/VFooter"
 import VLogo from "@/components/VLogo"
 import VNav from "@/components/VNav"
 export default {
-  components: { VFooter, VLogo, VNav },
-  props: {
-    shrink: { type: Boolean, default: false }
-  }
+  components: { VFooter, VLogo, VNav }
 }
 </script>
 
 <style scoped>
 header {
-  position: fixed;
-
   background-size: cover;
   background-position: top center;
   text-align: center;
@@ -43,7 +38,6 @@ header {
   width: 100vw;
   flex-shrink: 0;
   transition: transform var(--main-content-reveal-timeout);
-  transform: translateX(calc(-1 / 2 * var(--main-content-width)));
 }
 
 .logo-nav-container {
@@ -52,10 +46,6 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.shrink {
-  width: 23rem;
 }
 
 @media (max-width: 25rem) {

@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .vertical-carousel-container {
-  width: 30vw;
+  width: var(--vertical-carousel-width);
   height: 100vh;
   position: absolute;
   top: 0;

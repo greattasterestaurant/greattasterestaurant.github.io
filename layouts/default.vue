@@ -1,16 +1,14 @@
 <template>
-  <div :style="rootStyle" class="root">
-    <VHeader :shrink="false" />
+  <div class="root">
+    <Header />
     <nuxt />
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-import VHeader from "@/components/VHeader"
+import Header from "@/components/Header"
 export default {
-  components: { VHeader },
-  computed: mapGetters({ rootStyle: "variables" })
+  components: { Header }
 }
 </script>
 
@@ -29,7 +27,8 @@ body {
   --primary-color: rgb(138, 14, 14);
   --secondary-color: rgb(7, 134, 100);
   --main-content-reveal-timeout: 600ms;
-  --main-content-width: 0;
+  --main-content-width: 55em;
+  --vertical-carousel-width: 30vw;
 }
 
 header {
@@ -43,8 +42,7 @@ header {
 main {
   background-color: rgb(255, 249, 235);
   min-height: 100vh;
-  /* width: var(--main-content-width); */
-  width: 55em;
+  width: var(--main-content-width);
   overflow: hidden;
 
   position: absolute;
@@ -66,5 +64,37 @@ main.page-leave {
 }
 main.page-leave-to {
   transform: translateX(100%);
+}
+
+@media (max-width: 85em) {
+  .root {
+    --main-content-width: calc(100vw - 30em);
+  }
+}
+
+@media (max-width: 75em) {
+  .root {
+    --main-content-width: calc(100vw - 24em);
+  }
+}
+
+@media (max-width: 62em) {
+  main {
+    position: static;
+    width: 100%;
+  }
+
+  main.page-enter,
+  main.page-enter-to,
+  main.page-leave,
+  main.page-leave-to {
+    transform: none;
+  }
+
+  main.page-enter-active,
+  main.page-leave-active {
+    transition-duration: 0s;
+    display: none;
+  }
 }
 </style>
