@@ -54,7 +54,7 @@ export const mutations = {
 
 export const actions = {
   async fetch({ commit, state }) {
-    if (state.lastReceived) {
+    if (state.lastReceived || state.fetching) {
       return
     }
 
