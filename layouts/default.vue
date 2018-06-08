@@ -1,14 +1,16 @@
 <template>
   <div class="root">
     <Header />
+    <VerticalCarousel />
     <nuxt />
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header"
+import VerticalCarousel from "@/components/VerticalCarousel"
 export default {
-  components: { Header }
+  components: { Header, VerticalCarousel }
 }
 </script>
 

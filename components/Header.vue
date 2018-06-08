@@ -20,12 +20,9 @@ header {
   transform: translateX(calc(-1 / 2 * var(--main-content-width)));
 }
 @media (max-width: 62em) {
-  header {
-    position: static;
-    transform: none;
-  }
   .mainContentShown {
-    transform: none;
+    position: static;
+    transform: translateX(calc(-1 / 2 * var(--vertical-carousel-width)));
   }
 }
 </style>
