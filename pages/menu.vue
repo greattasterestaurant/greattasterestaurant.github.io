@@ -2,14 +2,10 @@
   <main class="menu-container">
     <article v-for="menu in menus" :key="menu.id">
       <h1>{{ menu.name }}</h1>
-      <section v-for="mc in menu.menuCategories" :key="mc.id">
-        <h2 :id="mc.name">{{ mc.name }}</h2>
-        <ul>
-          <li v-for="plate in mc.food" :key="plate.id">
-            <span class="price">{{ plate.price }}</span>
-            <span>{{ plate.name }}</span>
-          </li>
-        </ul>
+      <VPlateList :food="menu.food" />
+      <section v-for="submenu in menu.menus" :key="submenu.id">
+        <h2 :id="submenu.name">{{ submenu.name }}</h2>
+        <VPlateList :food="submenu.food" />
       </section>
     </article>
   </main>
@@ -17,10 +13,12 @@
 
 <script>
 import { mapGetters } from "vuex"
+import VPlateList from "@/components/VPlateList"
 export default {
   fetch({ store }) {
     return store.dispatch("menu/fetch")
   },
+  components: { VPlateList },
   computed: mapGetters({ menus: "menu/full" })
 }
 </script>
@@ -52,13 +50,8 @@ ul {
     max-content 1fr;
   grid-column-gap: 1em;
 }
-li {
-  font-size: 1em;
+>>> li {
   display: contents;
-}
-.price {
-  text-align: right;
-  color: #711d1d;
 }
 
 @media (max-width: 85em) {
