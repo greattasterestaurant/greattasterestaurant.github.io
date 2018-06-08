@@ -24,6 +24,7 @@ body {
   background-color: #f7f8fb;
   font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 </style>
 

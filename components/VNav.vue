@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li v-for="link in links" :key="link.to">
-        <nuxt-link :to="link.to">
+        <nuxt-link :to="link.to" @click.native="click">
           {{ link.text }}
         </nuxt-link>
       </li>
@@ -18,7 +18,19 @@ export default {
       { to: "/hours", text: "Hours" },
       { to: "/reviews", text: "Reviews" }
     ]
-  })
+  }),
+  methods: {
+    click() {
+      const styles = window.getComputedStyle(document.body)
+      const emToPx = styles["font-size"].slice(0, -2)
+      // TODO: Don't hard code this.
+      const wrapBreakpoint = 62 * emToPx
+      if (document.documentElement.clientWidth < wrapBreakpoint) {
+        const $main = document.querySelector("main")
+        $main.scrollIntoView({ behavior: "smooth" })
+      }
+    }
+  }
 }
 </script>
 
