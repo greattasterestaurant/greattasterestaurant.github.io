@@ -4,16 +4,16 @@
       <VLogo />
       <VNav />
     </div>
-    <VContact />
+    <VFooter />
   </header>
 </template>
 
 <script>
-import VContact from "@/components/VContact"
+import VFooter from "@/components/VFooter"
 import VLogo from "@/components/VLogo"
 import VNav from "@/components/VNav"
 export default {
-  components: { VContact, VLogo, VNav },
+  components: { VFooter, VLogo, VNav },
   props: {
     shrink: { type: Boolean, default: false }
   }

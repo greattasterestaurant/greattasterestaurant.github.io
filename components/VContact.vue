@@ -9,8 +9,6 @@
 address {
   font-style: normal;
   justify-content: flex-end;
-  padding: 2em 0;
-  color: rgb(110, 110, 110);
   line-height: 1.5;
 }
 </style>
