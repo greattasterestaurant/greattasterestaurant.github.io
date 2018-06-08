@@ -44,6 +44,7 @@ header {
 main {
   background-color: rgb(255, 249, 235);
   min-height: 100vh;
+  box-sizing: border-box;
   width: var(--main-content-width);
   overflow: hidden;
 

@@ -4,14 +4,7 @@
     @mouseover="showHours = true"
     @mouseout="showHours = false">
     <transition name="hours">
-      <div v-if="showHours" class="hours">
-        <p>
-          Monday to Thursday: 11am-10pm<br>
-          Friday to Saturday: 11am-11pm<br>
-          Sunday: 12pm-10pm
-        </p>
-        <p>Open 364 days. Closed on Thanksgiving</p>
-      </div>
+      <VHours v-if="showHours" class="hours" />
     </transition>
     <p v-if="open">Open now. Closing in {{ timeUntilSwitch }}.</p>
     <p v-if="!open && !isThanksgiving">Closed now. Opening in {{ timeUntilSwitch }}.</p>
@@ -21,7 +14,9 @@
 
 <script>
 import { addDays, distanceInWords, startOfTomorrow } from "date-fns"
+import VHours from "@/components/VHours"
 export default {
+  components: { VHours },
   data: () => ({
     open: false,
     timeUntilSwitch: "",
