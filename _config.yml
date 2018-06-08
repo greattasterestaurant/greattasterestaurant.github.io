@@ -1,8 +1,0 @@
-encoding: utf-8
-permalink: pretty
-defaults:
-  -
-    scope:
-      path: "" # This empty string scopes the below values to every file in the site
-    values:
-      layout: "default"
