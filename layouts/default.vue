@@ -15,11 +15,14 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Bad+Script|Libre+Baskerville:400,700|Open+Sans:400,700");
+
 body {
   margin: 0;
   padding: 0;
 
   background-color: #f7f8fb;
+  font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
 }
 </style>
