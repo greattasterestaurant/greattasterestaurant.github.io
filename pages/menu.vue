@@ -18,6 +18,9 @@ export default {
   fetch({ store }) {
     return store.dispatch("menu/fetch")
   },
+  transition(to, from) {
+    if (from && from.path !== "/") return "fade"
+  },
   components: { VPlateList },
   computed: mapGetters({ menus: "menu/full" })
 }

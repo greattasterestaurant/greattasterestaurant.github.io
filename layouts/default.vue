@@ -68,6 +68,16 @@ main.page-leave-to {
   transform: translateX(100%);
 }
 
+main.fade-enter {
+  opacity: 0;
+}
+main.fade-enter-active {
+  transition-duration: 100ms;
+}
+main.fade-enter-to {
+  opacity: 1;
+}
+
 @media (max-width: 85em) {
   .root {
     --main-content-width: calc(100vw - 30em);
