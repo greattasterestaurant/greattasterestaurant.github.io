@@ -9,7 +9,7 @@ const thumbnailUrl = name =>
 export const state = () => ({
   fetching: false,
   failed: false,
-  lastUpdated: null,
+  lastReceived: null,
   items: []
 })
 
@@ -33,7 +33,7 @@ export const mutations = {
   receive(state, payload) {
     state.fetching = false
     state.failed = false
-    state.lastUpdated = new Date()
+    state.lastReceived = new Date()
     state.items = payload
   },
   failed(state) {
@@ -43,7 +43,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetch({ commit }) {
+  async fetch({ commit, state }) {
     if (state.lastReceived) {
       return
     }
