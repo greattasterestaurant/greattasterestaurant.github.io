@@ -49,8 +49,13 @@ export const actions = {
     }
 
     commit("request")
-    const res = await fetch(galleryUrl)
-    const json = await res.json()
+    try {
+      const res = await fetch(galleryUrl)
+      var json = await res.json()
+    } catch (err) {
+      commit("failed")
+      throw err
+    }
     commit("receive", json.data)
   }
 }

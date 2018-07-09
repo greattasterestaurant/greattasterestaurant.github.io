@@ -59,10 +59,15 @@ export const actions = {
     }
 
     commit("request")
-    const [menus, food] = await Promise.all([
-      await fetch(menusUrl).then(res => res.json()),
-      await fetch(foodUrl).then(res => res.json())
-    ])
+    try {
+      var [menus, food] = await Promise.all([
+        await fetch(menusUrl).then(res => res.json()),
+        await fetch(foodUrl).then(res => res.json())
+      ])
+    } catch (err) {
+      commit("failed")
+      throw err
+    }
     commit("receive", {
       menus: menus.data,
       food: food.data
