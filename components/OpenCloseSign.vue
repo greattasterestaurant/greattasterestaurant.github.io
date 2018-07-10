@@ -4,7 +4,7 @@
     @mouseover="showHours = true"
     @mouseout="showHours = false">
     <transition name="hours">
-      <VHours v-if="showHours" class="hours" />
+      <Hours v-if="showHours" class="hours" />
     </transition>
     <p v-if="open">Open now. Closing in {{ timeUntilSwitch }}.</p>
     <p v-if="!open && !isThanksgiving">Closed now. Opening in {{ timeUntilSwitch }}.</p>
@@ -13,10 +13,11 @@
 </template>
 
 <script>
-import { addDays, distanceInWords, startOfTomorrow } from "date-fns"
-import VHours from "@/components/VHours"
+import { addDays, distanceInWords, format, startOfTomorrow } from "date-fns"
+import { mapValues } from "lodash"
+import Hours from "@/components/Hours"
 export default {
-  components: { VHours },
+  components: { Hours },
   data: () => ({
     open: false,
     timeUntilSwitch: "",
@@ -42,20 +43,32 @@ export default {
       const isWithinDayOfMonth = 22 <= date.getDate() && date.getDate() <= 28
       return isNovember && isThursday && isWithinDayOfMonth
     },
-    getDateWithHourOffset(now, hour) {
-      return new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour)
+    getDateWithHourMinuteOffset(now, hour, minutes = 0) {
+      return new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        hour,
+        minutes
+      )
+    },
+    getTimesForDate(now) {
+      const dayOfWeek = format(now, "dddd")
+      const map = this.$store.getters["hours/mapDayOfWeekToOpenCloseTimes"]
+      return mapValues(map[dayOfWeek], hourString => {
+        const [hour, minutes, seconds] = hourString
+          .match(/(\d{2}):(\d{2}):(\d{2})/)
+          .slice(1)
+        return { hour, minutes, seconds }
+      })
     },
     getOpenTimeForDate(now) {
-      const isSunday = now.getDay() === 0
-      return isSunday
-        ? this.getDateWithHourOffset(now, 12)
-        : this.getDateWithHourOffset(now, 11)
+      const { hour, minutes } = this.getTimesForDate(now).openTime
+      return this.getDateWithHourMinuteOffset(now, hour, minutes)
     },
     getCloseTimeForDate(now) {
-      const isFridayOrSaturday = now.getDay() === 5
-      return isFridayOrSaturday
-        ? this.getDateWithHourOffset(now, 23)
-        : this.getDateWithHourOffset(now, 22)
+      const { hour, minutes } = this.getTimesForDate(now).closeTime
+      return this.getDateWithHourMinuteOffset(now, hour, minutes)
     },
     updateData() {
       const now = new Date()
@@ -72,11 +85,10 @@ export default {
             ? this.getOpenTimeForDate(addDays(startOfTomorrow(), 1))
             : this.getOpenTimeForDate(startOfTomorrow())
 
-      this.timeUntilSwitch = distanceInWords(
-        now,
-        this.open ? closeTime : nextOpenTime,
-        { includeSeconds: false }
-      )
+      const nextEvent = this.open ? closeTime : nextOpenTime
+      this.timeUntilSwitch = distanceInWords(now, nextEvent, {
+        includeSeconds: false
+      })
       this.isThanksgiving = isThanksgiving
     },
     tick() {

@@ -1,16 +1,16 @@
 <template>
   <main>
     <h1>Restaurant Hours</h1>
-    <VHours />
+    <Hours />
   </main>
 </template>
 
 <script>
-import VHours from "@/components/VHours"
+import Hours from "@/components/Hours"
 export default {
   transition(to, from) {
     if (from && from.path !== "/") return "fade"
   },
-  components: { VHours }
+  components: { Hours }
 }
 </script>

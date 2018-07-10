@@ -1,15 +1,15 @@
 <template>
   <footer>
-    <VOpenCloseSign />
+    <OpenCloseSign />
     <VContact />
   </footer>
 </template>
 
 <script>
-import VOpenCloseSign from "@/components/VOpenCloseSign"
+import OpenCloseSign from "@/components/OpenCloseSign"
 import VContact from "@/components/VContact"
 export default {
-  components: { VOpenCloseSign, VContact }
+  components: { OpenCloseSign, VContact }
 }
 </script>
 

@@ -4,7 +4,10 @@ export const getters = {
 
 export const actions = {
   async nuxtServerInit(store) {
-    await store.dispatch("gallery/fetch")
-    await store.dispatch("menu/fetch")
+    await Promise.all([
+      store.dispatch("gallery/fetch"),
+      store.dispatch("menu/fetch"),
+      store.dispatch("hours/fetch")
+    ])
   }
 }
