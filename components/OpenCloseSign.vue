@@ -1,14 +1,13 @@
 <template>
-  <div
-    class="open-close-sign"
-    @mouseover="showHours = true"
-    @mouseout="showHours = false">
+  <div class="open-close-sign">
     <transition name="hours">
       <Hours v-if="showHours" class="hours" />
     </transition>
-    <p v-if="open">Open now. Closing in {{ timeUntilNextEvent }}.</p>
-    <p v-if="!open && !isThanksgiving">Closed now. Opening in {{ timeUntilNextEvent }}.</p>
-    <p v-if="!open && isThanksgiving">Closed for Thanksgiving.</p>
+    <p
+      @mouseenter="showHours = true"
+      @mouseleave="showHours = false">
+      {{ message }}
+    </p>
   </div>
 </template>
 
@@ -23,6 +22,7 @@ import Hours from "@/components/Hours"
 export default {
   components: { Hours },
   data: () => ({
+    timeUntilSwitch: "",
     showHours: false,
     now: new Date()
   }),
@@ -53,6 +53,15 @@ export default {
       const { closeTime } = this.scheduleForToday
       const nextEvent = this.open ? closeTime : this.nextOpenTime
       return distanceInWords(this.now, nextEvent, { includeSeconds: false })
+    },
+    message() {
+      if (this.open) {
+        return `Open now. Closing in ${this.timeUntilNextEvent}`
+      } else if (!this.open && !this.isThanksgiving) {
+        return `Closed now. Opening in ${this.timeUntilNextEvent}`
+      } else if (!this.open && this.isThanksgiving) {
+        return "Closed for Thanksgiving"
+      }
     }
   },
   mounted() {
@@ -101,6 +110,11 @@ export default {
 .hours {
   position: absolute;
   bottom: 3.25em;
+  /* While appearing, this indicator overlaps with the trigger area. If the
+   * mouse is in this area, this causes the indicator to disappear. Leaving
+   * the trigger area then causes it to reappear. Disabling pointer-events
+   * on this indicator prevents this thrashing. */
+  pointer-events: none;
 
   padding: 0 0.75em;
   background-color: rgba(0, 0, 0, 0.75);
