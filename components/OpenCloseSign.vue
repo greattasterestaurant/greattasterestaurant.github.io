@@ -6,26 +6,54 @@
     <transition name="hours">
       <Hours v-if="showHours" class="hours" />
     </transition>
-    <p v-if="open">Open now. Closing in {{ timeUntilSwitch }}.</p>
-    <p v-if="!open && !isThanksgiving">Closed now. Opening in {{ timeUntilSwitch }}.</p>
+    <p v-if="open">Open now. Closing in {{ timeUntilNextEvent }}.</p>
+    <p v-if="!open && !isThanksgiving">Closed now. Opening in {{ timeUntilNextEvent }}.</p>
     <p v-if="!open && isThanksgiving">Closed for Thanksgiving.</p>
   </div>
 </template>
 
 <script>
-import { addDays, distanceInWords, format, startOfTomorrow } from "date-fns"
+// The time functions below are not time zone aware. Someone in California
+// may see the restaurant as open when it's closed. We'll circle back to
+// this when date-fns 2.0 is released with time zone support.
+import { addDays, distanceInWords, format } from "date-fns"
 import { mapValues } from "lodash"
+import isDateThanksgiving from "@/util/is-date-thanksgiving"
 import Hours from "@/components/Hours"
 export default {
   components: { Hours },
   data: () => ({
-    open: false,
-    timeUntilSwitch: "",
-    isThanksgiving: false,
-    showHours: false
+    showHours: false,
+    now: new Date()
   }),
-  created() {
-    this.updateData()
+  computed: {
+    open() {
+      const { openTime, closeTime } = this.scheduleForToday
+      return (
+        !this.isThanksgiving && openTime <= this.now && this.now <= closeTime
+      )
+    },
+    scheduleForToday() {
+      return this.getScheduleForDate(this.now)
+    },
+    isThanksgiving() {
+      return isDateThanksgiving(this.now)
+    },
+    isThanksgivingTomorrow() {
+      return isDateThanksgiving(addDays(this.now, 1))
+    },
+    nextOpenTime() {
+      const { openTime } = this.scheduleForToday
+      const nextOpenDay = addDays(this.now, this.isThanksgivingTomorrow ? 2 : 1)
+      return this.now < openTime
+        ? openTime
+        : this.getScheduleForDate(nextOpenDay).openTime
+    },
+    timeUntilNextEvent() {
+      const { closeTime } = this.scheduleForToday
+      const nextEvent = this.open ? closeTime : this.nextOpenTime
+      return distanceInWords(this.now, nextEvent, { includeSeconds: false })
+    }
   },
   mounted() {
     this.timer = this.tick()
@@ -34,15 +62,6 @@ export default {
     clearTimeout(this.timer)
   },
   methods: {
-    // The time functions below are not time zone aware. Someone in California
-    // may see the restaurant as open when it's closed. We'll circle back to
-    // this when date-fns 2.0 is released with time zone support.
-    isDateThanksgiving(date) {
-      const isNovember = date.getMonth() === 10
-      const isThursday = date.getDay() === 4
-      const isWithinDayOfMonth = 22 <= date.getDate() && date.getDate() <= 28
-      return isNovember && isThursday && isWithinDayOfMonth
-    },
     getDateWithHourMinuteOffset(now, hour, minutes = 0) {
       return new Date(
         now.getFullYear(),
@@ -52,48 +71,17 @@ export default {
         minutes
       )
     },
-    getTimesForDate(now) {
+    getScheduleForDate(now) {
       const dayOfWeek = format(now, "dddd")
       const map = this.$store.getters["hours/mapDayOfWeekToOpenCloseTimes"]
       return mapValues(map[dayOfWeek], hourString => {
-        const [hour, minutes, seconds] = hourString
-          .match(/(\d{2}):(\d{2}):(\d{2})/)
-          .slice(1)
-        return { hour, minutes, seconds }
+        const [hour, minutes] = hourString.match(/(\d{2}):(\d{2})/).slice(1)
+        return this.getDateWithHourMinuteOffset(now, hour, minutes)
       })
     },
-    getOpenTimeForDate(now) {
-      const { hour, minutes } = this.getTimesForDate(now).openTime
-      return this.getDateWithHourMinuteOffset(now, hour, minutes)
-    },
-    getCloseTimeForDate(now) {
-      const { hour, minutes } = this.getTimesForDate(now).closeTime
-      return this.getDateWithHourMinuteOffset(now, hour, minutes)
-    },
-    updateData() {
-      const now = new Date()
-      const openTime = this.getOpenTimeForDate(now)
-      const closeTime = this.getCloseTimeForDate(now)
-      const isThanksgiving = this.isDateThanksgiving(now)
-      const isThanksgivingTomorrow = this.isDateThanksgiving(startOfTomorrow())
-
-      this.open = !isThanksgiving && openTime <= now && now <= closeTime
-      const nextOpenTime =
-        now < openTime
-          ? openTime
-          : isThanksgivingTomorrow
-            ? this.getOpenTimeForDate(addDays(startOfTomorrow(), 1))
-            : this.getOpenTimeForDate(startOfTomorrow())
-
-      const nextEvent = this.open ? closeTime : nextOpenTime
-      this.timeUntilSwitch = distanceInWords(now, nextEvent, {
-        includeSeconds: false
-      })
-      this.isThanksgiving = isThanksgiving
-    },
-    tick() {
-      this.updateData()
-      this.timer = setTimeout(() => this.tick(), 1000)
+    tick: function() {
+      this.now = new Date()
+      this.timer = setTimeout(this.tick, 1000)
     }
   }
 }
