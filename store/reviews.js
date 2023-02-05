@@ -1,7 +1,6 @@
 import fetch from "isomorphic-fetch"
 
-const reviewsUrl =
-  process.env.DIRECTUS_ENDPOINT + "/api/1.1/tables/reviews/rows"
+const reviewsUrl = "/api/1.1/tables/reviews/rows"
 
 export const state = () => ({
   fetching: false,
@@ -28,14 +27,14 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetch({ commit, state }) {
+  async fetch({ commit, state }, { apiBase }) {
     if (state.lastReceived || state.fetching) {
       return
     }
 
     commit("request")
     try {
-      const res = await fetch(reviewsUrl)
+      const res = await fetch(`${apiBase}${reviewsUrl}`)
       var json = await res.json()
     } catch (err) {
       commit("failed")

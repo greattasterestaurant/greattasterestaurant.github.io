@@ -1,6 +1,10 @@
 module.exports = {
   plugins: ["@/plugins/vuex-router-sync.js"],
-  modules: ["@nuxtjs/dotenv"],
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.DIRECTUS_ENDPOINT
+    }
+  },
   loading: false,
   head: {
     meta: [

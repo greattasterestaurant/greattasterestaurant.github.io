@@ -1,10 +1,8 @@
 import fetch from "isomorphic-fetch"
 
-const galleryUrl =
-  process.env.DIRECTUS_ENDPOINT + "/api/1.1/tables/gallery/rows"
+const galleryUrl = "/api/1.1/tables/gallery/rows"
 
-const thumbnailUrl = name =>
-  process.env.DIRECTUS_ENDPOINT + "/thumbnail/600/400/crop/best/" + name
+const thumbnailUrl = name => "/thumbnail/600/400/crop/best/" + name
 
 export const state = () => ({
   fetching: false,
@@ -43,14 +41,14 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetch({ commit, state }) {
+  async fetch({ commit, state }, { apiBase }) {
     if (state.lastReceived || state.fetching) {
       return
     }
 
     commit("request")
     try {
-      const res = await fetch(galleryUrl)
+      const res = await fetch(`${apiBase}${galleryUrl}`)
       var json = await res.json()
     } catch (err) {
       commit("failed")

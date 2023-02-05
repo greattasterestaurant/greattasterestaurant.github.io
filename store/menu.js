@@ -1,8 +1,7 @@
 import fetch from "isomorphic-fetch"
 import { keyBy } from "lodash"
 
-const urlForResource = resource =>
-  process.env.DIRECTUS_ENDPOINT + "/api/1.1/tables/" + resource + "/rows"
+const urlForResource = resource => "/api/1.1/tables/" + resource + "/rows"
 
 const menusUrl = urlForResource("menus")
 const foodUrl = urlForResource("food")
@@ -53,7 +52,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetch({ commit, state }) {
+  async fetch({ commit, state }, { apiBase }) {
     if (state.lastReceived || state.fetching) {
       return
     }
@@ -61,8 +60,8 @@ export const actions = {
     commit("request")
     try {
       var [menus, food] = await Promise.all([
-        await fetch(menusUrl).then(res => res.json()),
-        await fetch(foodUrl).then(res => res.json())
+        await fetch(`${apiBase}${menusUrl}`).then(res => res.json()),
+        await fetch(`${apiBase}${foodUrl}`).then(res => res.json())
       ])
     } catch (err) {
       commit("failed")

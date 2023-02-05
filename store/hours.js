@@ -1,6 +1,6 @@
 import fetch from "isomorphic-fetch"
 
-const hoursUrl = process.env.DIRECTUS_ENDPOINT + "/api/1.1/tables/hours/rows"
+const hoursUrl = "/api/1.1/tables/hours/rows"
 
 export const state = () => ({
   fetching: false,
@@ -55,14 +55,14 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetch({ commit, state }) {
+  async fetch({ commit, state }, { apiBase }) {
     if (state.lastReceived || state.fetching) {
       return
     }
 
     commit("request")
     try {
-      const res = await fetch(hoursUrl)
+      const res = await fetch(`${apiBase}${hoursUrl}`)
       var json = await res.json()
     } catch (err) {
       commit("failed")

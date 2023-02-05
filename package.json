@@ -3,11 +3,10 @@
   "scripts": {
     "start": "nuxt start",
     "build": "nuxt build",
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@nuxtjs/dotenv": "^1.1.1",
     "date-fns": "^1.29.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",

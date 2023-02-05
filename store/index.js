@@ -3,11 +3,11 @@ export const getters = {
 }
 
 export const actions = {
-  async nuxtServerInit(store) {
+  async nuxtServerInit(store, { $config }) {
     await Promise.all([
-      store.dispatch("gallery/fetch"),
-      store.dispatch("menu/fetch"),
-      store.dispatch("hours/fetch")
+      store.dispatch("gallery/fetch", { apiBase: $config.apiBase }),
+      store.dispatch("menu/fetch", { apiBase: $config.apiBase }),
+      store.dispatch("hours/fetch", { apiBase: $config.apiBase })
     ])
   }
 }
