@@ -2,7 +2,7 @@
   <div class="root">
     <Header />
     <VerticalCarousel />
-    <nuxt />
+    <slot />
   </div>
 </template>
 
@@ -13,6 +13,28 @@ export default {
   components: { Header, VerticalCarousel }
 }
 </script>
+
+<style scoped>
+.root {
+  --primary-color: rgb(138, 14, 14);
+  --secondary-color: rgb(7, 134, 100);
+  --main-content-reveal-timeout: 600ms;
+  --main-content-width: 55em;
+  --vertical-carousel-width: 30vw;
+}
+
+@media (max-width: 85em) {
+  .root {
+    --main-content-width: calc(100vw - 30em);
+  }
+}
+
+@media (max-width: 75em) {
+  .root {
+    --main-content-width: calc(100vw - 24em);
+  }
+}
+</style>
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Bad+Script|Libre+Baskerville:400,700|Open+Sans:400,700");
@@ -25,16 +47,6 @@ body {
   font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
-}
-</style>
-
-<style scoped>
-.root {
-  --primary-color: rgb(138, 14, 14);
-  --secondary-color: rgb(7, 134, 100);
-  --main-content-reveal-timeout: 600ms;
-  --main-content-width: 55em;
-  --vertical-carousel-width: 30vw;
 }
 
 header {
@@ -90,18 +102,6 @@ main.fade-enter-active {
 }
 main.fade-enter-to {
   opacity: 1;
-}
-
-@media (max-width: 85em) {
-  .root {
-    --main-content-width: calc(100vw - 30em);
-  }
-}
-
-@media (max-width: 75em) {
-  .root {
-    --main-content-width: calc(100vw - 24em);
-  }
 }
 
 @media (max-width: 62em) {
