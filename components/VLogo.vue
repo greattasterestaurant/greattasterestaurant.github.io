@@ -31,7 +31,7 @@ div {
   transform: translateX(-5%) scale(0.8);
 }
 
->>> a {
+:deep(a) {
   color: inherit;
   text-decoration: none;
 }

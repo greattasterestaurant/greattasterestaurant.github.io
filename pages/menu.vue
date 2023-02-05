@@ -51,7 +51,7 @@ ul {
     max-content 1fr;
   grid-column-gap: 1em;
 }
->>> li {
+:deep(li) {
   display: contents;
 }
 
