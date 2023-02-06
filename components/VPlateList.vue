@@ -7,7 +7,7 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     food: { type: Array, default: () => [] },

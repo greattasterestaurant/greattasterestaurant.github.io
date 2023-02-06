@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useGalleryStore } from "@/store/gallery"
 
 const { apiBase } = useRuntimeConfig()

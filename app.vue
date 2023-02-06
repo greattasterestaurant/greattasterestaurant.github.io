@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useGalleryStore } from "@/store/gallery"
 import { useHoursStore } from "@/store/hours"
 import { useMenuStore } from "@/store/menu"

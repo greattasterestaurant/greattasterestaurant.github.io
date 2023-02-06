@@ -2,7 +2,7 @@
   <VHours :days="days" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useHoursStore } from "@/store/hours"
 
 const hoursStore = useHoursStore()

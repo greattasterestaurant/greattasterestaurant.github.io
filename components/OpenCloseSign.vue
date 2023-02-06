@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // The time functions below are not time zone aware. Someone in California
 // may see the restaurant as open when it's closed. We'll circle back to
 // this when date-fns 2.0 is released with time zone support.
