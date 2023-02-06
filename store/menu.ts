@@ -1,4 +1,3 @@
-import fetch from "isomorphic-fetch"
 import { keyBy } from "lodash"
 import { defineStore } from "pinia"
 import { Food } from "~~/types/Food"

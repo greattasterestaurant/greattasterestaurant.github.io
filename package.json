@@ -9,13 +9,11 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
     "date-fns": "^1.29.0",
-    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",
     "nuxt": "^3.1.2",
     "pinia": "^2.0.30"
   },
   "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.36",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.19",
     "babel-eslint": "^8.2.3",

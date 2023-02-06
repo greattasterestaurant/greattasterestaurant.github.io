@@ -1,4 +1,3 @@
-import fetch from "isomorphic-fetch"
 import { defineStore } from "pinia"
 import { useMenuStore } from "@/store/menu"
 import { GalleryItem } from "@/types/Gallery"

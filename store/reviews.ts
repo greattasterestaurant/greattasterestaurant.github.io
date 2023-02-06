@@ -1,4 +1,3 @@
-import fetch from "isomorphic-fetch"
 import { defineStore } from "pinia"
 import { Review } from "@/types/Reviews"
 
