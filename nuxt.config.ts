@@ -19,4 +19,7 @@ export default defineNuxtConfig({
   router: {
     scrollBehavior: () => false,
   },
+  typescript: {
+    typeCheck: true,
+  },
 })
