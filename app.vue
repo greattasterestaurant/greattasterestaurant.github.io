@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <Header />
+    <SiteHeader />
     <VerticalCarousel />
     <NuxtLayout>
       <NuxtPage />

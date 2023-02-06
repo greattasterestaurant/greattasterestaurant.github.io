@@ -1,7 +1,7 @@
 <template>
   <div class="open-close-sign">
     <transition name="hours">
-      <Hours v-if="showHours" class="hours" />
+      <HoursListing v-if="showHours" class="hours" />
     </transition>
     <p @mouseenter="showHours = true" @mouseleave="showHours = false">
       {{ message }}
