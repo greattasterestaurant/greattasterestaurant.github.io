@@ -1,10 +1,18 @@
 import fetch from "isomorphic-fetch"
 import { defineStore } from "pinia"
+import { Review } from "@/types/Reviews"
 
 const reviewsUrl = "/api/1.1/tables/reviews/rows"
 
+interface State {
+  fetching: boolean
+  failed: boolean
+  lastReceived: null | Date
+  items: Review[]
+}
+
 export const useReviewsStore = defineStore("reviews", {
-  state: () => ({
+  state: (): State => ({
     fetching: false,
     failed: false,
     lastReceived: null,
@@ -15,7 +23,7 @@ export const useReviewsStore = defineStore("reviews", {
       this.fetching = true
       this.failed = false
     },
-    receive(payload) {
+    receive(payload: Review[]) {
       this.fetching = false
       this.failed = false
       this.lastReceived = new Date()
@@ -25,7 +33,7 @@ export const useReviewsStore = defineStore("reviews", {
       this.fetching = false
       this.failed = true
     },
-    async fetch({ apiBase }) {
+    async fetch({ apiBase }: { apiBase: string }) {
       if (this.lastReceived || this.fetching) {
         return
       }

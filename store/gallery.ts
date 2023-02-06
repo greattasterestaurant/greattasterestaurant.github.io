@@ -1,12 +1,20 @@
 import fetch from "isomorphic-fetch"
 import { defineStore } from "pinia"
 import { useMenuStore } from "@/store/menu"
+import { GalleryItem } from "@/types/Gallery"
 
 const galleryUrl = "/api/1.1/tables/gallery/rows"
-const thumbnailUrl = (name) => "/thumbnail/600/400/crop/best/" + name
+const thumbnailUrl = (name: string) => "/thumbnail/600/400/crop/best/" + name
+
+interface State {
+  fetching: boolean
+  failed: boolean
+  lastReceived: null | Date
+  items: readonly GalleryItem[]
+}
 
 export const useGalleryStore = defineStore("gallery", {
-  state: () => ({
+  state: (): State => ({
     fetching: false,
     failed: false,
     lastReceived: null,
@@ -18,9 +26,8 @@ export const useGalleryStore = defineStore("gallery", {
         const menuStore = useMenuStore()
         const food = item.food && menuStore.foodById[item.food.data.id]
 
-        const imageFileName = food
-          ? food.image.data.name
-          : item.image && item.image.data.name
+        const image = food?.image ?? item.image
+        const imageFileName = image?.data.name
         const src = imageFileName ? thumbnailUrl(imageFileName) : null
         return { alt: item.name, src }
       })
@@ -31,7 +38,7 @@ export const useGalleryStore = defineStore("gallery", {
       this.fetching = true
       this.failed = false
     },
-    receive(payload) {
+    receive(payload: GalleryItem[]) {
       this.fetching = false
       this.failed = false
       this.lastReceived = new Date()
@@ -41,7 +48,7 @@ export const useGalleryStore = defineStore("gallery", {
       this.fetching = false
       this.failed = true
     },
-    async fetch({ apiBase }) {
+    async fetch({ apiBase }: { apiBase: string }) {
       if (this.lastReceived || this.fetching) {
         return
       }
