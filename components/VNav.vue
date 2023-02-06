@@ -2,9 +2,9 @@
   <nav>
     <ul>
       <li v-for="link in links" :key="link.to">
-        <nuxt-link :to="link.to" @click.native="click">
+        <NuxtLink :to="link.to" @click.native="click">
           {{ link.text }}
-        </nuxt-link>
+        </NuxtLink>
       </li>
     </ul>
   </nav>
@@ -73,7 +73,7 @@ li + li {
   margin-left: 1.5em;
 }
 
-.nuxt-link-active {
+.router-link-active {
   text-decoration: underline;
 }
 
