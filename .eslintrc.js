@@ -10,12 +10,10 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:vue/recommended",
-    "plugin:prettier/recommended",
   ],
   plugins: ["vue"],
   rules: {
     semi: [2, "never"],
     "vue/max-attributes-per-line": "off",
-    "prettier/prettier": ["error", { semi: false }],
   },
 }
