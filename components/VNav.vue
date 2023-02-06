@@ -14,23 +14,23 @@
 export default {
   data: () => ({
     links: [
-      { to: "/menu", text: "Menu" },
-      { to: "/hours", text: "Hours" },
-      { to: "/reviews", text: "Reviews" },
-    ],
+      { to: '/menu', text: 'Menu' },
+      { to: '/hours', text: 'Hours' },
+      { to: '/reviews', text: 'Reviews' }
+    ]
   }),
   methods: {
-    click() {
+    click () {
       const styles = window.getComputedStyle(document.body)
       const emToPx = styles.fontSize.slice(0, -2)
       // TODO: Don't hard code this.
       const wrapBreakpoint = 62 * Number(emToPx)
       if (document.documentElement.clientWidth < wrapBreakpoint) {
-        const $main = document.querySelector("main")
-        $main?.scrollIntoView({ behavior: "smooth" })
+        const $main = document.querySelector('main')
+        $main?.scrollIntoView({ behavior: 'smooth' })
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

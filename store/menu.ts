@@ -1,13 +1,13 @@
-import { keyBy } from "lodash"
-import { defineStore } from "pinia"
-import { Food } from "~~/types/Food"
-import { Menu } from "~~/types/Menus"
+import { keyBy } from 'lodash'
+import { defineStore } from 'pinia'
+import { Food } from '~~/types/Food'
+import { Menu } from '~~/types/Menus'
 
 const urlForResource = (resource: string) =>
-  "/api/1.1/tables/" + resource + "/rows"
+  '/api/1.1/tables/' + resource + '/rows'
 
-const menusUrl = urlForResource("menus")
-const foodUrl = urlForResource("food")
+const menusUrl = urlForResource('menus')
+const foodUrl = urlForResource('food')
 
 interface State {
   fetching: boolean
@@ -22,49 +22,49 @@ interface TreeMenu extends Menu {
   food: Food[]
 }
 
-export const useMenuStore = defineStore("menu", {
+export const useMenuStore = defineStore('menu', {
   state: (): State => ({
     menus: [],
     food: [],
     fetching: false,
     lastReceived: null,
-    failed: false,
+    failed: false
   }),
   getters: {
     full: ({ menus, food }) => {
       const construct = (menu: Menu): TreeMenu => ({
         ...menu,
         menus: menus
-          .filter((x) => x.parent && x.parent.data.id === menu.id)
+          .filter(x => x.parent && x.parent.data.id === menu.id)
           .map(construct)
           .sort((a, b) => (a.sort < b.sort ? -1 : 1)),
         food: food
-          .filter((x) => x.menu?.data.id === menu.id)
-          .sort((a, b) => (a.sort < b.sort ? -1 : 1)),
+          .filter(x => x.menu?.data.id === menu.id)
+          .sort((a, b) => (a.sort < b.sort ? -1 : 1))
       })
       return menus
-        .filter((x) => x.parent === null)
+        .filter(x => x.parent === null)
         .map(construct)
         .sort((a, b) => (a.sort < b.sort ? -1 : 1))
     },
-    foodById: ({ food }) => keyBy(food, "id"),
+    foodById: ({ food }) => keyBy(food, 'id')
   },
   actions: {
-    request() {
+    request () {
       this.fetching = true
       this.failed = false
     },
-    receive(payload: { menus: Menu[]; food: Food[] }) {
+    receive (payload: { menus: Menu[]; food: Food[] }) {
       this.menus = payload.menus
       this.food = payload.food
       this.fetching = false
       this.lastReceived = new Date()
     },
-    fail() {
+    fail () {
       this.failed = true
       this.fetching = false
     },
-    async fetch({ apiBase }: { apiBase: string }) {
+    async fetch ({ apiBase }: { apiBase: string }) {
       if (this.lastReceived || this.fetching) {
         return
       }
@@ -72,8 +72,8 @@ export const useMenuStore = defineStore("menu", {
       this.request()
       try {
         var [menus, food] = await Promise.all([
-          await fetch(`${apiBase}${menusUrl}`).then((res) => res.json()),
-          await fetch(`${apiBase}${foodUrl}`).then((res) => res.json()),
+          await fetch(`${apiBase}${menusUrl}`).then(res => res.json()),
+          await fetch(`${apiBase}${foodUrl}`).then(res => res.json())
         ])
       } catch (err) {
         this.fail()
@@ -81,8 +81,8 @@ export const useMenuStore = defineStore("menu", {
       }
       this.receive({
         menus: menus.data,
-        food: food.data,
+        food: food.data
       })
-    },
-  },
+    }
+  }
 })

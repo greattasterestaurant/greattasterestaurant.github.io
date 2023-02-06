@@ -4,6 +4,6 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "index",
+  layout: 'index'
 })
 </script>

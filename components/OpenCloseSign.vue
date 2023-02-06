@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
-import { addDays, formatDistance, format } from "date-fns"
-import { mapValues } from "lodash"
-import isDateThanksgiving from "@/util/is-date-thanksgiving"
-import { useHoursStore } from "@/store/hours"
+import { addDays, formatDistance, format } from 'date-fns'
+import { mapValues } from 'lodash'
+import isDateThanksgiving from '@/util/is-date-thanksgiving'
+import { useHoursStore } from '@/store/hours'
 
 interface State {
   timeUntilSwitch: string
@@ -23,45 +23,45 @@ interface State {
 }
 
 export default {
-  setup() {
+  setup () {
     const hoursStore = useHoursStore()
     return { hoursStore }
   },
   data: (): State => ({
-    timeUntilSwitch: "",
+    timeUntilSwitch: '',
     showHours: false,
     now: new Date(),
-    timer: null,
+    timer: null
   }),
   computed: {
-    open() {
+    open () {
       const { openTime, closeTime } = this.scheduleForToday
       return (
         !this.isThanksgiving && openTime <= this.now && this.now <= closeTime
       )
     },
-    scheduleForToday() {
+    scheduleForToday () {
       return this.getScheduleForDate(this.now)
     },
-    isThanksgiving() {
+    isThanksgiving () {
       return isDateThanksgiving(this.now)
     },
-    isThanksgivingTomorrow() {
+    isThanksgivingTomorrow () {
       return isDateThanksgiving(addDays(this.now, 1))
     },
-    nextOpenTime() {
+    nextOpenTime () {
       const { openTime } = this.scheduleForToday
       const nextOpenDay = addDays(this.now, this.isThanksgivingTomorrow ? 2 : 1)
       return this.now < openTime
         ? openTime
         : this.getScheduleForDate(nextOpenDay).openTime
     },
-    timeUntilNextEvent() {
+    timeUntilNextEvent () {
       const { closeTime } = this.scheduleForToday
       const nextEvent = this.open ? closeTime : this.nextOpenTime
       return formatDistance(nextEvent, this.now, { includeSeconds: false })
     },
-    message() {
+    message () {
       // The time logic in this component are not time zone aware. Someone in
       // California may see the restaurant as open when it's closed.
       // TODO: Fix this.
@@ -70,20 +70,20 @@ export default {
       } else if (!this.open && !this.isThanksgiving) {
         return `Closed now. Opening in ${this.timeUntilNextEvent}`
       } else if (!this.open && this.isThanksgiving) {
-        return "Closed for Thanksgiving"
+        return 'Closed for Thanksgiving'
       }
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.tick()
   },
-  beforeDestroy() {
+  beforeUnmount () {
     if (this.timer) {
       window.clearTimeout(this.timer)
     }
   },
   methods: {
-    getDateWithHourMinuteOffset(now: Date, hour: number, minutes = 0) {
+    getDateWithHourMinuteOffset (now: Date, hour: number, minutes = 0) {
       return new Date(
         now.getFullYear(),
         now.getMonth(),
@@ -92,8 +92,8 @@ export default {
         minutes
       )
     },
-    getScheduleForDate(now: Date) {
-      const dayOfWeek = format(now, "EEEE")
+    getScheduleForDate (now: Date) {
+      const dayOfWeek = format(now, 'EEEE')
       const map = this.hoursStore.mapDayOfWeekToOpenCloseTimes
       return mapValues(map[dayOfWeek], (hourString) => {
         const match = hourString.match(/(\d{2}):(\d{2})/)
@@ -111,8 +111,8 @@ export default {
     tick: function () {
       this.now = new Date()
       this.timer = window.setTimeout(this.tick, 1000)
-    },
-  },
+    }
+  }
 }
 </script>
 

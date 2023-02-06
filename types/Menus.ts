@@ -1,4 +1,4 @@
-import { Relation } from "./Relation"
+import { Relation } from './Relation'
 
 export interface Menu {
   readonly id: number
@@ -7,5 +7,5 @@ export interface Menu {
   readonly description: string
   readonly sort: number
 
-  readonly __table: "menus"
+  readonly __table: 'menus'
 }

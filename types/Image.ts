@@ -5,5 +5,5 @@ export interface Image {
   readonly thumbnail_url: string
   readonly old_thumbnail_url: string
 
-  readonly __table: "directus_files"
+  readonly __table: 'directus_files'
 }

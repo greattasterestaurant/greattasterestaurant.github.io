@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { format, parse } from "date-fns"
-import { useReviewsStore } from "@/store/reviews"
+import { format, parse } from 'date-fns'
+import { useReviewsStore } from '@/store/reviews'
 
 const reviewsStore = useReviewsStore()
 const reviews = computed(() => reviewsStore.items)

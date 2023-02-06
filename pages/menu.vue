@@ -4,7 +4,9 @@
       <h1>{{ menu.name }}</h1>
       <VPlateList :food="menu.food" />
       <section v-for="submenu in menu.menus" :key="submenu.id">
-        <h2 :id="submenu.name">{{ submenu.name }}</h2>
+        <h2 :id="submenu.name">
+          {{ submenu.name }}
+        </h2>
         <VPlateList :food="submenu.food" />
       </section>
     </article>
@@ -12,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMenuStore } from "@/store/menu"
+import { useMenuStore } from '@/store/menu'
 
 const menuStore = useMenuStore()
 const menus = menuStore.full

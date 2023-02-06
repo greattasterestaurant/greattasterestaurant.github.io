@@ -5,18 +5,18 @@
 </template>
 
 <script setup lang="ts">
-import { useGalleryStore } from "@/store/gallery"
+import { useGalleryStore } from '@/store/gallery'
 
 const { apiBase } = useRuntimeConfig()
 
 const galleryStore = useGalleryStore()
-const images = galleryStore.images.map((image) => ({
+const images = galleryStore.images.map(image => ({
   ...image,
-  src: `${apiBase}${image.src}`,
+  src: `${apiBase}${image.src}`
 }))
 
 const route = useRoute()
-const limitHeight = computed(() => route.path !== "/")
+const limitHeight = computed(() => route.path !== '/')
 </script>
 
 <style>

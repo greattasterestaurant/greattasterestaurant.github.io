@@ -9,16 +9,16 @@
 </template>
 
 <script setup lang="ts">
-import { useGalleryStore } from "@/store/gallery"
-import { useHoursStore } from "@/store/hours"
-import { useMenuStore } from "@/store/menu"
+import { useGalleryStore } from '@/store/gallery'
+import { useHoursStore } from '@/store/hours'
+import { useMenuStore } from '@/store/menu'
 
 const { apiBase } = useRuntimeConfig()
 
 await Promise.all([
   useGalleryStore().fetch({ apiBase }),
   useHoursStore().fetch({ apiBase }),
-  useMenuStore().fetch({ apiBase }),
+  useMenuStore().fetch({ apiBase })
 ])
 </script>
 

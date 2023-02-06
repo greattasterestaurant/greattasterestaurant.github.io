@@ -1,9 +1,9 @@
-import { defineStore } from "pinia"
-import { useMenuStore } from "@/store/menu"
-import { GalleryItem } from "@/types/Gallery"
+import { defineStore } from 'pinia'
+import { useMenuStore } from '@/store/menu'
+import { GalleryItem } from '@/types/Gallery'
 
-const galleryUrl = "/api/1.1/tables/gallery/rows"
-const thumbnailUrl = (name: string) => "/thumbnail/600/400/crop/best/" + name
+const galleryUrl = '/api/1.1/tables/gallery/rows'
+const thumbnailUrl = (name: string) => '/thumbnail/600/400/crop/best/' + name
 
 interface State {
   fetching: boolean
@@ -12,12 +12,12 @@ interface State {
   items: readonly GalleryItem[]
 }
 
-export const useGalleryStore = defineStore("gallery", {
+export const useGalleryStore = defineStore('gallery', {
   state: (): State => ({
     fetching: false,
     failed: false,
     lastReceived: null,
-    items: [],
+    items: []
   }),
   getters: {
     images: (state) => {
@@ -30,24 +30,24 @@ export const useGalleryStore = defineStore("gallery", {
         const src = imageFileName ? thumbnailUrl(imageFileName) : null
         return { alt: item.name, src }
       })
-    },
+    }
   },
   actions: {
-    request() {
+    request () {
       this.fetching = true
       this.failed = false
     },
-    receive(payload: GalleryItem[]) {
+    receive (payload: GalleryItem[]) {
       this.fetching = false
       this.failed = false
       this.lastReceived = new Date()
       this.items = payload
     },
-    fail() {
+    fail () {
       this.fetching = false
       this.failed = true
     },
-    async fetch({ apiBase }: { apiBase: string }) {
+    async fetch ({ apiBase }: { apiBase: string }) {
       if (this.lastReceived || this.fetching) {
         return
       }
@@ -61,6 +61,6 @@ export const useGalleryStore = defineStore("gallery", {
         throw err
       }
       this.receive(json.data)
-    },
-  },
+    }
+  }
 })

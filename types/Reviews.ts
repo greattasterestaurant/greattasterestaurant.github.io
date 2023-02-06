@@ -5,5 +5,5 @@ export interface Review {
   readonly date: string
   readonly body: string
 
-  readonly __table: "reviews"
+  readonly __table: 'reviews'
 }

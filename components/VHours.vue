@@ -33,9 +33,9 @@ const possiblyCondensedDays = computed(() => {
       last?.openTime === current.openTime &&
       last.closeTime === current.closeTime
     const continuousDaysOfWeek = continuous
-      ? last.dayOfWeek.includes("–")
-        ? last.dayOfWeek.replace(/–.*/, "–" + current.dayOfWeek)
-        : last.dayOfWeek + "–" + current.dayOfWeek
+      ? last.dayOfWeek.includes('–')
+        ? last.dayOfWeek.replace(/–.*/, '–' + current.dayOfWeek)
+        : last.dayOfWeek + '–' + current.dayOfWeek
       : null
     const includeLast = !continuous && last
     return [
@@ -44,8 +44,8 @@ const possiblyCondensedDays = computed(() => {
       {
         dayOfWeek: continuousDaysOfWeek ?? current.dayOfWeek,
         openTime: current.openTime,
-        closeTime: current.closeTime,
-      },
+        closeTime: current.closeTime
+      }
     ]
   }, [])
 })

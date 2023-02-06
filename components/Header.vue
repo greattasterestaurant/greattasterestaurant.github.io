@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const mainContentShown = computed(() => route.path !== "/")
+const mainContentShown = computed(() => route.path !== '/')
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
-import { Relation } from "./Relation"
-import { Menu } from "./Menus"
-import { Image } from "./Image"
+import { Relation } from './Relation'
+import { Menu } from './Menus'
+import { Image } from './Image'
 
 export interface Food {
   readonly id: number
@@ -11,5 +11,5 @@ export interface Food {
   readonly sort: number
   readonly menu: Relation<Menu> | null
   readonly image: Relation<Image> | null
-  readonly __table: "food"
+  readonly __table: 'food'
 }
