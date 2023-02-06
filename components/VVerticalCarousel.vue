@@ -1,7 +1,7 @@
 <template>
   <div class="vertical-carousel">
     <div v-for="image in images" :key="image.src" class="img-container">
-      <img :alt="image.alt" :src="image.src">
+      <img :alt="image.alt" :src="image.src" />
       <span class="explanation" aria-hidden="true">{{ image.alt }}</span>
     </div>
   </div>
@@ -10,8 +10,8 @@
 <script>
 export default {
   props: {
-    images: { type: Array, default: () => [] }
-  }
+    images: { type: Array, default: () => [] },
+  },
 }
 </script>
 

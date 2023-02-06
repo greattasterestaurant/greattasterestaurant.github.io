@@ -11,9 +11,9 @@ import { useGalleryStore } from "@/store/gallery"
 const { apiBase } = useRuntimeConfig()
 
 const galleryStore = useGalleryStore()
-const images = galleryStore.images.map(image => ({
+const images = galleryStore.images.map((image) => ({
   ...image,
-  src: `${apiBase}${image.src}`
+  src: `${apiBase}${image.src}`,
 }))
 
 const route = useRoute()

@@ -8,23 +8,26 @@ export const useHoursStore = defineStore("hours", {
     fetching: false,
     failed: false,
     lastReceived: null,
-    items: []
+    items: [],
   }),
   getters: {
-    display: state =>
-      state.items.map(day => ({
+    display: (state) =>
+      state.items.map((day) => ({
         dayOfWeek: day.day_of_week,
         openTime: formatHourString(day.open_time),
-        closeTime: formatHourString(day.close_time)
+        closeTime: formatHourString(day.close_time),
       })),
-    mapDayOfWeekToOpenCloseTimes: state =>
+    mapDayOfWeekToOpenCloseTimes: (state) =>
       state.items.reduce(
         (acc, el) => ({
           ...acc,
-          [el.day_of_week]: { openTime: el.open_time, closeTime: el.close_time }
+          [el.day_of_week]: {
+            openTime: el.open_time,
+            closeTime: el.close_time,
+          },
         }),
         {}
-      )
+      ),
   },
   actions: {
     request() {
@@ -55,8 +58,8 @@ export const useHoursStore = defineStore("hours", {
         throw err
       }
       this.receive(json.data)
-    }
-  }
+    },
+  },
 })
 
 function formatHourString(str) {

@@ -3,9 +3,7 @@
     <transition name="hours">
       <Hours v-if="showHours" class="hours" />
     </transition>
-    <p
-      @mouseenter="showHours = true"
-      @mouseleave="showHours = false">
+    <p @mouseenter="showHours = true" @mouseleave="showHours = false">
       {{ message }}
     </p>
   </div>
@@ -30,7 +28,7 @@ export default {
   data: () => ({
     timeUntilSwitch: "",
     showHours: false,
-    now: new Date()
+    now: new Date(),
   }),
   computed: {
     open() {
@@ -68,7 +66,7 @@ export default {
       } else if (!this.open && this.isThanksgiving) {
         return "Closed for Thanksgiving"
       }
-    }
+    },
   },
   mounted() {
     this.timer = this.tick()
@@ -89,16 +87,16 @@ export default {
     getScheduleForDate(now) {
       const dayOfWeek = format(now, "dddd")
       const map = this.hoursStore.mapDayOfWeekToOpenCloseTimes
-      return mapValues(map[dayOfWeek], hourString => {
+      return mapValues(map[dayOfWeek], (hourString) => {
         const [hour, minutes] = hourString.match(/(\d{2}):(\d{2})/).slice(1)
         return this.getDateWithHourMinuteOffset(now, hour, minutes)
       })
     },
-    tick: function() {
+    tick: function () {
       this.now = new Date()
       this.timer = setTimeout(this.tick, 1000)
-    }
-  }
+    },
+  },
 }
 </script>
 

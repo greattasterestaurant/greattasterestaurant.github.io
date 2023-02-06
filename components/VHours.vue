@@ -14,7 +14,7 @@
 export default {
   props: {
     condensed: { type: Boolean, default: true },
-    days: { type: Array, default: () => [] }
+    days: { type: Array, default: () => [] },
   },
   computed: {
     possiblyCondensedDays() {
@@ -40,12 +40,12 @@ export default {
           {
             dayOfWeek: continuous ? continuousDaysOfWeek : current.dayOfWeek,
             openTime: current.openTime,
-            closeTime: current.closeTime
-          }
+            closeTime: current.closeTime,
+          },
         ]
       }, [])
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -10,8 +10,8 @@
 <script>
 export default {
   props: {
-    food: { type: Array, default: () => [] }
-  }
+    food: { type: Array, default: () => [] },
+  },
 }
 </script>
 
