@@ -3,18 +3,18 @@ import { defineStore } from "pinia"
 import { useMenuStore } from "@/store/menu"
 
 const galleryUrl = "/api/1.1/tables/gallery/rows"
-const thumbnailUrl = name => "/thumbnail/600/400/crop/best/" + name
+const thumbnailUrl = (name) => "/thumbnail/600/400/crop/best/" + name
 
 export const useGalleryStore = defineStore("gallery", {
   state: () => ({
     fetching: false,
     failed: false,
     lastReceived: null,
-    items: []
+    items: [],
   }),
   getters: {
-    images: state => {
-      return state.items.map(item => {
+    images: (state) => {
+      return state.items.map((item) => {
         const menuStore = useMenuStore()
         const food = item.food && menuStore.foodById[item.food.data.id]
 
@@ -24,7 +24,7 @@ export const useGalleryStore = defineStore("gallery", {
         const src = imageFileName ? thumbnailUrl(imageFileName) : null
         return { alt: item.name, src }
       })
-    }
+    },
   },
   actions: {
     request() {
@@ -55,6 +55,6 @@ export const useGalleryStore = defineStore("gallery", {
         throw err
       }
       this.receive(json.data)
-    }
-  }
+    },
+  },
 })

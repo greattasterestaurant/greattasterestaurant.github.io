@@ -15,8 +15,8 @@
 <script>
 export default {
   props: {
-    shrink: { type: Boolean, default: false }
-  }
+    shrink: { type: Boolean, default: false },
+  },
 }
 </script>
 

@@ -8,7 +8,7 @@ export const useReviewsStore = defineStore("reviews", {
     fetching: false,
     failed: false,
     lastReceived: null,
-    items: []
+    items: [],
   }),
   actions: {
     request() {
@@ -39,6 +39,6 @@ export const useReviewsStore = defineStore("reviews", {
         throw err
       }
       this.receive(json.data)
-    }
-  }
+    },
+  },
 })

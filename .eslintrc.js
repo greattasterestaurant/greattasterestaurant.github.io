@@ -2,22 +2,20 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   parserOptions: {
-    parser: "babel-eslint"
+    parser: "babel-eslint",
   },
   extends: [
     "eslint:recommended",
     "plugin:vue/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
   ],
-  plugins: [
-    "vue"
-  ],
+  plugins: ["vue"],
   rules: {
-    "semi": [2, "never"],
+    semi: [2, "never"],
     "vue/max-attributes-per-line": "off",
-    "prettier/prettier": ["error", { "semi": false }]
-  }
+    "prettier/prettier": ["error", { semi: false }],
+  },
 }

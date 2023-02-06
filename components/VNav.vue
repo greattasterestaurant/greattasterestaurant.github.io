@@ -16,8 +16,8 @@ export default {
     links: [
       { to: "/menu", text: "Menu" },
       { to: "/hours", text: "Hours" },
-      { to: "/reviews", text: "Reviews" }
-    ]
+      { to: "/reviews", text: "Reviews" },
+    ],
   }),
   methods: {
     click() {
@@ -29,8 +29,8 @@ export default {
         const $main = document.querySelector("main")
         $main.scrollIntoView({ behavior: "smooth" })
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

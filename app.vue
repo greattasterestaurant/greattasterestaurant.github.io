@@ -3,7 +3,7 @@
     <Header />
     <VerticalCarousel />
     <NuxtLayout>
-      <NuxtPage /> 
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>

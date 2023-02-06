@@ -9,7 +9,7 @@
 import OpenCloseSign from "@/components/OpenCloseSign"
 import VContact from "@/components/VContact"
 export default {
-  components: { OpenCloseSign, VContact }
+  components: { OpenCloseSign, VContact },
 }
 </script>
 
