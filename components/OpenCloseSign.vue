@@ -9,26 +9,32 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // The time functions below are not time zone aware. Someone in California
 // may see the restaurant as open when it's closed. We'll circle back to
 // this when date-fns 2.0 is released with time zone support.
 import { addDays, distanceInWords, format } from "date-fns"
 import { mapValues } from "lodash"
 import isDateThanksgiving from "@/util/is-date-thanksgiving"
-import Hours from "@/components/Hours"
 import { useHoursStore } from "@/store/hours"
 
+interface State {
+  timeUntilSwitch: string
+  showHours: boolean
+  now: Date
+  timer?: number
+}
+
 export default {
-  components: { Hours },
   setup() {
     const hoursStore = useHoursStore()
     return { hoursStore }
   },
-  data: () => ({
+  data: (): State => ({
     timeUntilSwitch: "",
     showHours: false,
     now: new Date(),
+    timer: undefined
   }),
   computed: {
     open() {
@@ -69,13 +75,13 @@ export default {
     },
   },
   mounted() {
-    this.timer = this.tick()
+    this.tick()
   },
   beforeDestroy() {
-    clearTimeout(this.timer)
+    window.clearTimeout(this.timer)
   },
   methods: {
-    getDateWithHourMinuteOffset(now, hour, minutes = 0) {
+    getDateWithHourMinuteOffset(now: Date, hour: number, minutes = 0) {
       return new Date(
         now.getFullYear(),
         now.getMonth(),
@@ -84,17 +90,21 @@ export default {
         minutes
       )
     },
-    getScheduleForDate(now) {
+    getScheduleForDate(now: Date) {
       const dayOfWeek = format(now, "dddd")
       const map = this.hoursStore.mapDayOfWeekToOpenCloseTimes
       return mapValues(map[dayOfWeek], (hourString) => {
-        const [hour, minutes] = hourString.match(/(\d{2}):(\d{2})/).slice(1)
-        return this.getDateWithHourMinuteOffset(now, hour, minutes)
+        const match = hourString.match(/(\d{2}):(\d{2})/)
+        if (match === null) {
+          throw new Error(`Failed to parse ${hourString}`)
+        }
+        const [hour, minutes] = match.slice(1)
+        return this.getDateWithHourMinuteOffset(now, Number(hour), Number(minutes))
       })
     },
     tick: function () {
       this.now = new Date()
-      this.timer = setTimeout(this.tick, 1000)
+      this.timer = window.setTimeout(this.tick, 1000)
     },
   },
 }

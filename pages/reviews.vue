@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { format } from "date-fns"
 import { useReviewsStore } from "@/store/reviews"
 

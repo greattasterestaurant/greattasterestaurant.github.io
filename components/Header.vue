@@ -2,9 +2,7 @@
   <VHeader :class="{ mainContentShown }" />
 </template>
 
-<script setup>
-import VHeader from "@/components/VHeader"
-
+<script setup lang="ts">
 const route = useRoute()
 const mainContentShown = computed(() => route.path !== "/")
 </script>

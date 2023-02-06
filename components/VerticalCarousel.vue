@@ -4,8 +4,7 @@
   </div>
 </template>
 
-<script setup>
-import VVerticalCarousel from "@/components/VVerticalCarousel"
+<script setup lang="ts">
 import { useGalleryStore } from "@/store/gallery"
 
 const { apiBase } = useRuntimeConfig()

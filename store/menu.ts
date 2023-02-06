@@ -1,14 +1,29 @@
 import fetch from "isomorphic-fetch"
 import { keyBy } from "lodash"
 import { defineStore } from "pinia"
+import { Food } from "~~/types/Food"
+import { Menu } from "~~/types/Menus"
 
-const urlForResource = (resource) => "/api/1.1/tables/" + resource + "/rows"
+const urlForResource = (resource: string) => "/api/1.1/tables/" + resource + "/rows"
 
 const menusUrl = urlForResource("menus")
 const foodUrl = urlForResource("food")
 
+interface State {
+  fetching: boolean;
+  failed: boolean;
+  lastReceived: null | Date
+  menus: Menu[]
+  food: Food[]
+}
+
+interface FullMenu extends Menu {
+  menus: FullMenu[]
+  food: Food[]
+}
+
 export const useMenuStore = defineStore("menu", {
-  state: () => ({
+  state: (): State => ({
     menus: [],
     food: [],
     fetching: false,
@@ -17,14 +32,14 @@ export const useMenuStore = defineStore("menu", {
   }),
   getters: {
     full: ({ menus, food }) => {
-      const construct = (menu) => ({
+      const construct = (menu: Menu): FullMenu => ({
         ...menu,
         menus: menus
           .filter((x) => x.parent && x.parent.data.id === menu.id)
           .map(construct)
           .sort((a, b) => (a.sort < b.sort ? -1 : 1)),
         food: food
-          .filter((x) => x.menu.data.id === menu.id)
+          .filter((x) => x.menu?.data.id === menu.id)
           .sort((a, b) => (a.sort < b.sort ? -1 : 1)),
       })
       return menus
@@ -39,7 +54,7 @@ export const useMenuStore = defineStore("menu", {
       this.fetching = true
       this.failed = false
     },
-    receive(payload) {
+    receive(payload: { menus: Menu[], food: Food[] }) {
       this.menus = payload.menus
       this.food = payload.food
       this.fetching = false
@@ -49,7 +64,7 @@ export const useMenuStore = defineStore("menu", {
       this.failed = true
       this.fetching = false
     },
-    async fetch({ apiBase }) {
+    async fetch({ apiBase }: { apiBase: string }) {
       if (this.lastReceived || this.fetching) {
         return
       }

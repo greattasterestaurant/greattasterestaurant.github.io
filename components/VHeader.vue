@@ -8,15 +8,6 @@
   </header>
 </template>
 
-<script>
-import VFooter from "@/components/VFooter"
-import VLogo from "@/components/VLogo"
-import VNav from "@/components/VNav"
-export default {
-  components: { VFooter, VLogo, VNav },
-}
-</script>
-
 <style scoped>
 header {
   background-size: cover;

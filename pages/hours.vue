@@ -4,7 +4,3 @@
     <Hours />
   </div>
 </template>
-
-<script setup>
-import Hours from "@/components/Hours"
-</script>

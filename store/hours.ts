@@ -1,10 +1,18 @@
 import fetch from "isomorphic-fetch"
 import { defineStore } from "pinia"
+import { Hours } from "@/types/Hours";
 
 const hoursUrl = "/api/1.1/tables/hours/rows"
 
+interface State {
+  fetching: boolean;
+  failed: boolean;
+  lastReceived: null | Date
+  items: readonly Hours[]
+}
+
 export const useHoursStore = defineStore("hours", {
-  state: () => ({
+  state: (): State => ({
     fetching: false,
     failed: false,
     lastReceived: null,
@@ -17,7 +25,7 @@ export const useHoursStore = defineStore("hours", {
         openTime: formatHourString(day.open_time),
         closeTime: formatHourString(day.close_time),
       })),
-    mapDayOfWeekToOpenCloseTimes: (state) =>
+    mapDayOfWeekToOpenCloseTimes: (state): Record<string, { openTime: string, closeTime: string }> =>
       state.items.reduce(
         (acc, el) => ({
           ...acc,
@@ -34,7 +42,7 @@ export const useHoursStore = defineStore("hours", {
       this.fetching = true
       this.failed = false
     },
-    receive(payload) {
+    receive(payload: readonly Hours[]) {
       this.fetching = false
       this.failed = false
       this.lastReceived = new Date()
@@ -44,7 +52,7 @@ export const useHoursStore = defineStore("hours", {
       this.fetching = false
       this.failed = true
     },
-    async fetch({ apiBase }) {
+    async fetch({ apiBase }: { apiBase: string }) {
       if (this.lastReceived || this.fetching) {
         return
       }
@@ -62,8 +70,14 @@ export const useHoursStore = defineStore("hours", {
   },
 })
 
-function formatHourString(str) {
-  let [hour, minutes] = /(\d{2}):(\d{2})/.exec(str).slice(1)
+function formatHourString(str: string) {
+  const exec = /(\d{2}):(\d{2})/.exec(str)
+  if (exec === null) {
+    throw new Error(`Failed to format hour string: ${str}`)
+  }
+
+  let [hourStr, minutes] = exec.slice(1)
+  let hour = Number(hourStr)
   const meridian = hour >= 12 ? "pm" : "am"
   hour = hour === 0 ? 12 : hour
   hour = hour > 12 ? hour - 12 : hour

@@ -11,8 +11,7 @@
   </div>
 </template>
 
-<script setup>
-import VPlateList from "@/components/VPlateList"
+<script setup lang="ts">
 import { useMenuStore } from "@/store/menu"
 
 const menuStore = useMenuStore()
