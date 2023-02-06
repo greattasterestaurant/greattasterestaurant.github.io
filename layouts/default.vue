@@ -6,12 +6,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Header from "@/components/Header"
 import VerticalCarousel from "@/components/VerticalCarousel"
-export default {
-  components: { Header, VerticalCarousel }
-}
+import { useGalleryStore } from "@/store/gallery"
+import { useHoursStore } from "@/store/hours"
+import { useMenuStore } from "@/store/menu"
+
+const { apiBase } = useRuntimeConfig()
+
+await Promise.all([
+  useGalleryStore().fetch({ apiBase }),
+  useHoursStore().fetch({ apiBase }),
+  useMenuStore().fetch({ apiBase }),
+])
 </script>
 
 <style scoped>

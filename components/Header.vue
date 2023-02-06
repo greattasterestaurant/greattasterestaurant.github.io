@@ -2,13 +2,11 @@
   <VHeader :class="{ mainContentShown }" />
 </template>
 
-<script>
-import { mapGetters } from "vuex"
+<script setup>
 import VHeader from "@/components/VHeader"
-export default {
-  components: { VHeader },
-  computed: mapGetters(["mainContentShown"])
-}
+
+const route = useRoute()
+const mainContentShown = computed(() => route.path !== "/")
 </script>
 
 <style scoped>

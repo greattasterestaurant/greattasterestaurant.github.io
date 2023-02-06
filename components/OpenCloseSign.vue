@@ -19,8 +19,14 @@ import { addDays, distanceInWords, format } from "date-fns"
 import { mapValues } from "lodash"
 import isDateThanksgiving from "@/util/is-date-thanksgiving"
 import Hours from "@/components/Hours"
+import { useHoursStore } from "@/store/hours"
+
 export default {
   components: { Hours },
+  setup() {
+    const hoursStore = useHoursStore()
+    return { hoursStore }
+  },
   data: () => ({
     timeUntilSwitch: "",
     showHours: false,
@@ -82,7 +88,7 @@ export default {
     },
     getScheduleForDate(now) {
       const dayOfWeek = format(now, "dddd")
-      const map = this.$store.getters["hours/mapDayOfWeekToOpenCloseTimes"]
+      const map = this.hoursStore.mapDayOfWeekToOpenCloseTimes
       return mapValues(map[dayOfWeek], hourString => {
         const [hour, minutes] = hourString.match(/(\d{2}):(\d{2})/).slice(1)
         return this.getDateWithHourMinuteOffset(now, hour, minutes)

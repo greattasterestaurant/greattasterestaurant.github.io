@@ -2,11 +2,10 @@
   <VHours :days="days" />
 </template>
 
-<script>
-import { mapGetters } from "vuex"
+<script setup>
 import VHours from "@/components/VHours"
-export default {
-  components: { VHours },
-  computed: mapGetters({ days: "hours/display" })
-}
+import { useHoursStore } from "@/store/hours"
+
+const hoursStore = useHoursStore()
+const days = hoursStore.display
 </script>

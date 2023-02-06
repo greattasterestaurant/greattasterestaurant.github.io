@@ -4,17 +4,20 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from "vuex"
+<script setup>
 import VVerticalCarousel from "@/components/VVerticalCarousel"
+import { useGalleryStore } from "@/store/gallery"
 
-export default {
-  components: { VVerticalCarousel },
-  computed: mapGetters({
-    limitHeight: "mainContentShown",
-    images: "gallery/images"
-  })
-}
+const { apiBase } = useRuntimeConfig()
+
+const galleryStore = useGalleryStore()
+const images = galleryStore.images.map(image => ({
+  ...image,
+  src: `${apiBase}${image.src}`
+}))
+
+const route = useRoute()
+const limitHeight = computed(() => route.path !== "/")
 </script>
 
 <style>

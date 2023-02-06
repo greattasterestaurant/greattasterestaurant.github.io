@@ -11,19 +11,14 @@
   </main>
 </template>
 
-<script>
-import { mapGetters } from "vuex"
+<script setup>
 import VPlateList from "@/components/VPlateList"
-export default {
-  fetch({ store }) {
-    return store.dispatch("menu/fetch")
-  },
-  transition(to, from) {
-    if (from && from.path !== "/") return "fade"
-  },
-  components: { VPlateList },
-  computed: mapGetters({ menus: "menu/full" })
-}
+import { useMenuStore } from "@/store/menu"
+
+const menuStore = useMenuStore()
+const menus = menuStore.full
+
+// TODO: Use fade transition if not navigating back to the index page.
 </script>
 
 <style scoped>

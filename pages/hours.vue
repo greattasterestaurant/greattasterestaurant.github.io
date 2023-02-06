@@ -5,12 +5,8 @@
   </main>
 </template>
 
-<script>
+<script setup>
 import Hours from "@/components/Hours"
-export default {
-  transition(to, from) {
-    if (from && from.path !== "/") return "fade"
-  },
-  components: { Hours }
-}
+
+// TODO: Use fade transition if not navigating back to the index page.
 </script>

@@ -1,45 +1,44 @@
 import fetch from "isomorphic-fetch"
+import { defineStore } from "pinia"
 
 const reviewsUrl = "/api/1.1/tables/reviews/rows"
 
-export const state = () => ({
-  fetching: false,
-  failed: false,
-  lastReceived: null,
-  items: []
+export const useReviewsStore = defineStore("reviews", {
+  state: () => ({
+    fetching: false,
+    failed: false,
+    lastReceived: null,
+    items: []
+  }),
+  actions: {
+    request() {
+      this.fetching = true
+      this.failed = false
+    },
+    receive(payload) {
+      this.fetching = false
+      this.failed = false
+      this.lastReceived = new Date()
+      this.items = payload
+    },
+    fail() {
+      this.fetching = false
+      this.failed = true
+    },
+    async fetch({ apiBase }) {
+      if (this.lastReceived || this.fetching) {
+        return
+      }
+
+      this.request()
+      try {
+        const res = await fetch(`${apiBase}${reviewsUrl}`)
+        var json = await res.json()
+      } catch (err) {
+        this.fail()
+        throw err
+      }
+      this.receive(json.data)
+    }
+  }
 })
-
-export const mutations = {
-  request(state) {
-    state.fetching = true
-    state.failed = false
-  },
-  receive(state, payload) {
-    state.fetching = false
-    state.failed = false
-    state.lastReceived = new Date()
-    state.items = payload
-  },
-  failed(state) {
-    state.fetching = false
-    state.failed = true
-  }
-}
-
-export const actions = {
-  async fetch({ commit, state }, { apiBase }) {
-    if (state.lastReceived || state.fetching) {
-      return
-    }
-
-    commit("request")
-    try {
-      const res = await fetch(`${apiBase}${reviewsUrl}`)
-      var json = await res.json()
-    } catch (err) {
-      commit("failed")
-      throw err
-    }
-    commit("receive", json.data)
-  }
-}

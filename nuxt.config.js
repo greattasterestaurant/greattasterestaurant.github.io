@@ -1,5 +1,5 @@
-module.exports = {
-  plugins: ["@/plugins/vuex-router-sync.js"],
+export default defineNuxtConfig({
+  modules: ["@pinia/nuxt"],
   runtimeConfig: {
     public: {
       apiBase: process.env.DIRECTUS_ENDPOINT
@@ -21,4 +21,4 @@ module.exports = {
   router: {
     scrollBehavior: () => false
   }
-}
+})

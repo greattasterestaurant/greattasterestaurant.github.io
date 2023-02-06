@@ -10,19 +10,17 @@
   </main>
 </template>
 
-<script>
-import { mapState } from "vuex"
+<script setup>
 import { format } from "date-fns"
-export default {
-  fetch({ store }) {
-    return store.dispatch("reviews/fetch")
-  },
-  transition(to, from) {
-    if (from && from.path !== "/") return "fade"
-  },
-  computed: mapState({ reviews: state => state.reviews.items }),
-  methods: { format }
-}
+import { useReviewsStore } from "@/store/reviews"
+
+const reviewsStore = useReviewsStore()
+const reviews = computed(() => reviewsStore.items)
+
+const { apiBase } = useRuntimeConfig()
+await reviewsStore.fetch({ apiBase })
+
+// TODO: Use fade transition if not navigating back to the index page.
 </script>
 
 <style>
