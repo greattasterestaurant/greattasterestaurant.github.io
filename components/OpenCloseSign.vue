@@ -18,12 +18,19 @@ import { mapValues } from "lodash"
 import isDateThanksgiving from "@/util/is-date-thanksgiving"
 import { useHoursStore } from "@/store/hours"
 
+interface State {
+  timeUntilSwitch: string
+  showHours: boolean
+  now: Date
+  timer?: number
+}
+
 export default {
   setup() {
     const hoursStore = useHoursStore()
     return { hoursStore }
   },
-  data: () => ({
+  data: (): State => ({
     timeUntilSwitch: "",
     showHours: false,
     now: new Date(),
@@ -73,7 +80,7 @@ export default {
     clearTimeout(this.timer)
   },
   methods: {
-    getDateWithHourMinuteOffset(now, hour, minutes = 0) {
+    getDateWithHourMinuteOffset(now: Date, hour: number, minutes = 0) {
       return new Date(
         now.getFullYear(),
         now.getMonth(),
@@ -82,7 +89,7 @@ export default {
         minutes
       )
     },
-    getScheduleForDate(now) {
+    getScheduleForDate(now: Date) {
       const dayOfWeek = format(now, "dddd")
       const map = this.hoursStore.mapDayOfWeekToOpenCloseTimes
       return mapValues(map[dayOfWeek], (hourString) => {
