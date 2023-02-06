@@ -12,8 +12,11 @@ module.exports = {
       { name: "viewport", content: "width=device-width, initial-scale=1" }
     ]
   },
-  transition: {
-    mode: "in-out"
+  app: {
+    pageTransition: {
+      name: "page",
+      mode: "in-out"
+    }
   },
   router: {
     scrollBehavior: () => false
