@@ -22,7 +22,7 @@ interface State {
   timeUntilSwitch: string
   showHours: boolean
   now: Date
-  timer?: number
+  timer: number | null
 }
 
 export default {
@@ -34,6 +34,7 @@ export default {
     timeUntilSwitch: "",
     showHours: false,
     now: new Date(),
+    timer: null,
   }),
   computed: {
     open() {
@@ -74,10 +75,12 @@ export default {
     },
   },
   mounted() {
-    this.timer = this.tick()
+    this.tick()
   },
   beforeDestroy() {
-    clearTimeout(this.timer)
+    if (this.timer) {
+      window.clearTimeout(this.timer)
+    }
   },
   methods: {
     getDateWithHourMinuteOffset(now: Date, hour: number, minutes = 0) {
@@ -99,7 +102,7 @@ export default {
     },
     tick: function () {
       this.now = new Date()
-      this.timer = setTimeout(this.tick, 1000)
+      this.timer = window.setTimeout(this.tick, 1000)
     },
   },
 }
