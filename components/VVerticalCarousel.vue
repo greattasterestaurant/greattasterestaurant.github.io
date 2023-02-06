@@ -7,12 +7,15 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    images: { type: Array, default: () => [] },
-  },
+<script setup lang="ts">
+interface Image {
+  readonly src: string
+  readonly alt?: string
 }
+
+const props = defineProps<{
+  readonly images: readonly Image[]
+}>()
 </script>
 
 <style scoped>

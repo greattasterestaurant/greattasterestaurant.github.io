@@ -10,43 +10,45 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    condensed: { type: Boolean, default: true },
-    days: { type: Array, default: () => [] },
-  },
-  computed: {
-    possiblyCondensedDays() {
-      if (!this.condensed) {
-        return this.days
-      }
-
-      return this.days.reduce((acc, current) => {
-        const last = acc.pop()
-        const continuous =
-          last &&
-          last.openTime === current.openTime &&
-          last.closeTime === current.closeTime
-        const continuousDaysOfWeek =
-          continuous &&
-          (last.dayOfWeek.includes("–")
-            ? last.dayOfWeek.replace(/–.*/, "–" + current.dayOfWeek)
-            : last.dayOfWeek + "–" + current.dayOfWeek)
-        const includeLast = !continuous && last
-        return [
-          ...acc,
-          ...(includeLast ? [last] : []),
-          {
-            dayOfWeek: continuous ? continuousDaysOfWeek : current.dayOfWeek,
-            openTime: current.openTime,
-            closeTime: current.closeTime,
-          },
-        ]
-      }, [])
-    },
-  },
+<script setup lang="ts">
+interface Day {
+  dayOfWeek: string
+  openTime: string
+  closeTime: string
 }
+
+const props = defineProps<{
+  noCondense?: boolean
+  days: readonly Day[]
+}>()
+
+const possiblyCondensedDays = computed(() => {
+  if (props.noCondense) {
+    return props.days
+  }
+
+  return props.days.reduce((acc: Day[], current: Day): Day[] => {
+    const last = acc.pop()
+    const continuous =
+      last?.openTime === current.openTime &&
+      last.closeTime === current.closeTime
+    const continuousDaysOfWeek = continuous
+      ? last.dayOfWeek.includes("–")
+        ? last.dayOfWeek.replace(/–.*/, "–" + current.dayOfWeek)
+        : last.dayOfWeek + "–" + current.dayOfWeek
+      : null
+    const includeLast = !continuous && last
+    return [
+      ...acc,
+      ...(includeLast ? [last] : []),
+      {
+        dayOfWeek: continuousDaysOfWeek ?? current.dayOfWeek,
+        openTime: current.openTime,
+        closeTime: current.closeTime,
+      },
+    ]
+  }, [])
+})
 </script>
 
 <style scoped>

@@ -7,12 +7,16 @@
   </ul>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    food: { type: Array, default: () => [] },
-  },
+<script setup lang="ts">
+interface Plate {
+  readonly id: number
+  readonly price: string
+  readonly name: string
 }
+
+const props = defineProps<{
+  readonly food: readonly Plate[]
+}>()
 </script>
 
 <style>
