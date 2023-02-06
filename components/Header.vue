@@ -3,8 +3,6 @@
 </template>
 
 <script setup>
-import VHeader from "@/components/VHeader"
-
 const route = useRoute()
 const mainContentShown = computed(() => route.path !== "/")
 </script>

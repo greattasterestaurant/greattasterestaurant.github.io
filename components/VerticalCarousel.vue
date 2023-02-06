@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import VVerticalCarousel from "@/components/VVerticalCarousel"
 import { useGalleryStore } from "@/store/gallery"
 
 const { apiBase } = useRuntimeConfig()

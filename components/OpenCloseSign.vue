@@ -16,11 +16,9 @@
 import { addDays, distanceInWords, format } from "date-fns"
 import { mapValues } from "lodash"
 import isDateThanksgiving from "@/util/is-date-thanksgiving"
-import Hours from "@/components/Hours"
 import { useHoursStore } from "@/store/hours"
 
 export default {
-  components: { Hours },
   setup() {
     const hoursStore = useHoursStore()
     return { hoursStore }

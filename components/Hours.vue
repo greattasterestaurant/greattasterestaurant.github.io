@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-import VHours from "@/components/VHours"
 import { useHoursStore } from "@/store/hours"
 
 const hoursStore = useHoursStore()

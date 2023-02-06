@@ -9,8 +9,6 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header"
-import VerticalCarousel from "@/components/VerticalCarousel"
 import { useGalleryStore } from "@/store/gallery"
 import { useHoursStore } from "@/store/hours"
 import { useMenuStore } from "@/store/menu"
