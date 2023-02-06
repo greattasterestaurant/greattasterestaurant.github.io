@@ -13,10 +13,8 @@ export default defineNuxtConfig({
     ]
   },
   app: {
-    pageTransition: {
-      name: "page",
-      mode: "in-out"
-    }
+    layoutTransition: { name: "layout", mode: "default" },
+    pageTransition: { name: "page", mode: "out-in" }
   },
   router: {
     scrollBehavior: () => false

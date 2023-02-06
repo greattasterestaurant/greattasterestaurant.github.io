@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <h1>Reviews</h1>
     <section v-for="review in reviews" :key="review.id">
       {{ "⭐️".repeat(review.rating) }}
@@ -7,7 +7,7 @@
       {{ format(review.date, "MMMM Mo, GGGG") }}
       <p>{{ review.body }}</p>
     </section>
-  </main>
+  </div>
 </template>
 
 <script setup>
@@ -19,8 +19,6 @@ const reviews = computed(() => reviewsStore.items)
 
 const { apiBase } = useRuntimeConfig()
 await reviewsStore.fetch({ apiBase })
-
-// TODO: Use fade transition if not navigating back to the index page.
 </script>
 
 <style>

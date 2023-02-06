@@ -1,5 +1,5 @@
 <template>
-  <main class="menu-container">
+  <div class="menu-container">
     <article v-for="menu in menus" :key="menu.id">
       <h1>{{ menu.name }}</h1>
       <VPlateList :food="menu.food" />
@@ -8,7 +8,7 @@
         <VPlateList :food="submenu.food" />
       </section>
     </article>
-  </main>
+  </div>
 </template>
 
 <script setup>
@@ -17,8 +17,6 @@ import { useMenuStore } from "@/store/menu"
 
 const menuStore = useMenuStore()
 const menus = menuStore.full
-
-// TODO: Use fade transition if not navigating back to the index page.
 </script>
 
 <style scoped>
