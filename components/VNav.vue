@@ -22,12 +22,12 @@ export default {
   methods: {
     click() {
       const styles = window.getComputedStyle(document.body)
-      const emToPx = styles["font-size"].slice(0, -2)
+      const emToPx = styles.fontSize.slice(0, -2)
       // TODO: Don't hard code this.
-      const wrapBreakpoint = 62 * emToPx
+      const wrapBreakpoint = 62 * Number(emToPx)
       if (document.documentElement.clientWidth < wrapBreakpoint) {
         const $main = document.querySelector("main")
-        $main.scrollIntoView({ behavior: "smooth" })
+        $main?.scrollIntoView({ behavior: "smooth" })
       }
     },
   },
