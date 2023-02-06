@@ -67,11 +67,11 @@ export default {
       // TODO: Fix this.
       if (this.open) {
         return `Open now. Closing in ${this.timeUntilNextEvent}`
-      } else if (!this.open && !this.isThanksgiving) {
-        return `Closed now. Opening in ${this.timeUntilNextEvent}`
-      } else if (!this.open && this.isThanksgiving) {
-        return 'Closed for Thanksgiving'
       }
+
+      return this.isThanksgiving
+        ? 'Closed for Thanksgiving'
+        : `Closed now. Opening in ${this.timeUntilNextEvent}`
     }
   },
   mounted () {
