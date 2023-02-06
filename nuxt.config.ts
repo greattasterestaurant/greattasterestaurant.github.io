@@ -5,7 +5,6 @@ export default defineNuxtConfig({
       apiBase: process.env.DIRECTUS_ENDPOINT,
     },
   },
-  loading: false,
   app: {
     layoutTransition: { name: "layout", mode: "default" },
     pageTransition: { name: "page", mode: "out-in" },
@@ -16,9 +15,6 @@ export default defineNuxtConfig({
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
     },
-  },
-  router: {
-    scrollBehavior: () => false,
   },
   typescript: {
     typeCheck: true,
