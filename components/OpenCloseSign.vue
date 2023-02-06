@@ -10,10 +10,7 @@
 </template>
 
 <script lang="ts">
-// The time functions below are not time zone aware. Someone in California
-// may see the restaurant as open when it's closed. We'll circle back to
-// this when date-fns 2.0 is released with time zone support.
-import { addDays, distanceInWords, format } from "date-fns"
+import { addDays, formatDistance, format } from "date-fns"
 import { mapValues } from "lodash"
 import isDateThanksgiving from "@/util/is-date-thanksgiving"
 import { useHoursStore } from "@/store/hours"
@@ -62,9 +59,12 @@ export default {
     timeUntilNextEvent() {
       const { closeTime } = this.scheduleForToday
       const nextEvent = this.open ? closeTime : this.nextOpenTime
-      return distanceInWords(this.now, nextEvent, { includeSeconds: false })
+      return formatDistance(nextEvent, this.now, { includeSeconds: false })
     },
     message() {
+      // The time logic in this component are not time zone aware. Someone in
+      // California may see the restaurant as open when it's closed.
+      // TODO: Fix this.
       if (this.open) {
         return `Open now. Closing in ${this.timeUntilNextEvent}`
       } else if (!this.open && !this.isThanksgiving) {
@@ -93,7 +93,7 @@ export default {
       )
     },
     getScheduleForDate(now: Date) {
-      const dayOfWeek = format(now, "dddd")
+      const dayOfWeek = format(now, "EEEE")
       const map = this.hoursStore.mapDayOfWeekToOpenCloseTimes
       return mapValues(map[dayOfWeek], (hourString) => {
         const match = hourString.match(/(\d{2}):(\d{2})/)

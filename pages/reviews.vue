@@ -4,14 +4,14 @@
     <section v-for="review in reviews" :key="review.id">
       {{ "⭐️".repeat(review.rating) }}
       <strong>{{ review.author }}</strong>
-      {{ format(review.date, "MMMM Mo, GGGG") }}
+      {{ format(parse(review.date, "yyyy-MM-dd HH:mm:ss", new Date()), "MMMM do, yyyy") }}
       <p>{{ review.body }}</p>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { format } from "date-fns"
+import { format, parse } from "date-fns"
 import { useReviewsStore } from "@/store/reviews"
 
 const reviewsStore = useReviewsStore()
