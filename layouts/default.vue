@@ -80,21 +80,21 @@ main::after {
   height: 5em;
 }
 
-main.page-enter {
+main.page-enter-from {
   transform: translateX(100%);
 }
 main.page-enter-active,
 main.page-leave-active {
   transition-duration: var(--main-content-reveal-timeout);
 }
-main.page-leave {
+main.page-leave-from {
   transform: translateX(0);
 }
 main.page-leave-to {
   transform: translateX(100%);
 }
 
-main.fade-enter {
+main.fade-enter-from {
   opacity: 0;
 }
 main.fade-enter-active {
