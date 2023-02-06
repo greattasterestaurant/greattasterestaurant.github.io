@@ -6,15 +6,16 @@ export default defineNuxtConfig({
     },
   },
   loading: false,
-  head: {
-    meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-    ],
-  },
   app: {
     layoutTransition: { name: "layout", mode: "default" },
     pageTransition: { name: "page", mode: "out-in" },
+    head: {
+      title: "Great Taste",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+      ],
+    },
   },
   router: {
     scrollBehavior: () => false,
