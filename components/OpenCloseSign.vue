@@ -96,8 +96,16 @@ export default {
       const dayOfWeek = format(now, "dddd")
       const map = this.hoursStore.mapDayOfWeekToOpenCloseTimes
       return mapValues(map[dayOfWeek], (hourString) => {
-        const [hour, minutes] = hourString.match(/(\d{2}):(\d{2})/).slice(1)
-        return this.getDateWithHourMinuteOffset(now, hour, minutes)
+        const match = hourString.match(/(\d{2}):(\d{2})/)
+        if (match === null) {
+          throw new Error(`Failed to parse ${hourString}`)
+        }
+        const [hour, minutes] = match.slice(1)
+        return this.getDateWithHourMinuteOffset(
+          now,
+          Number(hour),
+          Number(minutes)
+        )
       })
     },
     tick: function () {

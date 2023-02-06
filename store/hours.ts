@@ -73,7 +73,13 @@ export const useHoursStore = defineStore("hours", {
 })
 
 function formatHourString(str: string) {
-  let [hour, minutes] = /(\d{2}):(\d{2})/.exec(str).slice(1)
+  const exec = /(\d{2}):(\d{2})/.exec(str)
+  if (exec === null) {
+    throw new Error(`Failed to format hour string: ${str}`)
+  }
+
+  let [hourStr, minutes] = exec.slice(1)
+  let hour = Number(hourStr)
   const meridian = hour >= 12 ? "pm" : "am"
   hour = hour === 0 ? 12 : hour
   hour = hour > 12 ? hour - 12 : hour
