@@ -17,7 +17,7 @@ import { useReviewsStore } from '@/store/reviews'
 const reviewsStore = useReviewsStore()
 const reviews = computed(() => reviewsStore.items)
 
-const { apiBase } = useRuntimeConfig()
+const { apiBase } = useRuntimeConfig().public
 await reviewsStore.fetch({ apiBase })
 </script>
 

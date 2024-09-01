@@ -13,7 +13,7 @@ import { useGalleryStore } from '@/store/gallery'
 import { useHoursStore } from '@/store/hours'
 import { useMenuStore } from '@/store/menu'
 
-const { apiBase } = useRuntimeConfig()
+const { apiBase } = useRuntimeConfig().public
 
 await Promise.all([
   useGalleryStore().fetch({ apiBase }),

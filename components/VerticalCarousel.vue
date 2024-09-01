@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { useGalleryStore } from '@/store/gallery'
 
-const { apiBase } = useRuntimeConfig()
+const { apiBase } = useRuntimeConfig().public
 
 const galleryStore = useGalleryStore()
 const images = galleryStore.images.map(image => ({
