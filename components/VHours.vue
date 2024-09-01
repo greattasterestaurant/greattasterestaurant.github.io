@@ -1,7 +1,7 @@
 <template>
   <div>
     <dl>
-      <template v-for="day in possiblyCondensedDays" :key="day.id">
+      <template v-for="day in possiblyCondensedDays" :key="day.dayOfWeek">
         <dt>{{ day.dayOfWeek }}</dt>
         <dd>{{ day.openTime }}–{{ day.closeTime }}</dd>
       </template>
