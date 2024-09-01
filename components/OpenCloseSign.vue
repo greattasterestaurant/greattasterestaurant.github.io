@@ -1,8 +1,10 @@
 <template>
   <div class="open-close-sign">
-    <transition name="hours">
-      <HoursListing v-if="showHours" class="hours" />
-    </transition>
+    <div class="hours-container">
+      <transition name="hours">
+        <HoursListing v-if="showHours" class="hours" />
+      </transition>
+    </div>
     <p @mouseenter="showHours = true" @mouseleave="showHours = false">
       {{ message }}
     </p>
@@ -119,7 +121,6 @@ export default {
 <style scoped>
 .open-close-sign {
   line-height: 1.5;
-  position: relative;
 }
 .open-close-sign > p {
   /* Substitute padding for margin so mouseover/mouseout are captured in a
@@ -127,9 +128,21 @@ export default {
   margin: 0;
   padding: 1em 0;
 }
+
+/* A 0px anchor for the hours floating box. */
+.hours-container {
+  position: relative;
+  margin: auto;
+  width: 0;
+}
+
 .hours {
   position: absolute;
-  bottom: 3.25em;
+  width: max-content;
+  transform: translateX(-50%);
+  left: 0;
+  bottom: 0;
+
   /* While appearing, this indicator overlaps with the trigger area. If the
    * mouse is in this area, this causes the indicator to disappear. Leaving
    * the trigger area then causes it to reappear. Disabling pointer-events
@@ -157,11 +170,11 @@ export default {
 @keyframes hours-appear {
   from {
     opacity: 0;
-    transform: translateY(1em);
+    transform: translateX(-50%) translateY(1em);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 }
 
