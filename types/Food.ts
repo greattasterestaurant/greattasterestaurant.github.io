@@ -1,6 +1,6 @@
-import { Relation } from './Relation'
-import { Menu } from './Menus'
-import { Image } from './Image'
+import type { Relation } from './Relation'
+import type { Menu } from './Menus'
+import type { Image } from './Image'
 
 export interface Food {
   readonly id: number

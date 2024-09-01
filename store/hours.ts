@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Hours } from '@/types/Hours'
+import type { Hours } from '@/types/Hours'
 
 const hoursUrl = '/api/1.1/tables/hours/rows'
 

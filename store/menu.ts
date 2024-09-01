@@ -1,7 +1,7 @@
 import { keyBy } from 'lodash'
 import { defineStore } from 'pinia'
-import { Food } from '~~/types/Food'
-import { Menu } from '~~/types/Menus'
+import type { Food } from '~~/types/Food'
+import type { Menu } from '~~/types/Menus'
 
 const urlForResource = (resource: string) =>
   '/api/1.1/tables/' + resource + '/rows'

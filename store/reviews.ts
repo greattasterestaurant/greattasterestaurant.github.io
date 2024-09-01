@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Review } from '@/types/Reviews'
+import type { Review } from '@/types/Reviews'
 
 const reviewsUrl = '/api/1.1/tables/reviews/rows'
 

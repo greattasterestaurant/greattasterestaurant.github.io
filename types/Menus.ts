@@ -1,4 +1,4 @@
-import { Relation } from './Relation'
+import type { Relation } from './Relation'
 
 export interface Menu {
   readonly id: number

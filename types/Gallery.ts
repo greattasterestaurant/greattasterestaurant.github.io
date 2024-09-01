@@ -1,6 +1,6 @@
-import { Relation } from './Relation'
-import { Image } from './Image'
-import { Food } from './Food'
+import type { Relation } from './Relation'
+import type { Image } from './Image'
+import type { Food } from './Food'
 
 export interface GalleryItem {
   readonly id: string

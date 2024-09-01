@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useMenuStore } from '@/store/menu'
-import { GalleryItem } from '@/types/Gallery'
+import type { GalleryItem } from '@/types/Gallery'
 
 const galleryUrl = '/api/1.1/tables/gallery/rows'
 const thumbnailUrl = (name: string) => '/thumbnail/600/400/crop/best/' + name
