@@ -1,5 +1,10 @@
 export default defineNuxtConfig({
   modules: ['@pinia/nuxt'],
+
+  // Recommended to be set when running nuxt dev.
+  // https://nuxt.com/docs/api/nuxt-config#compatibilitydate
+  compatibilityDate: '2024-09-01',
+
   runtimeConfig: {
     public: {
       apiBase: process.env.DIRECTUS_ENDPOINT
