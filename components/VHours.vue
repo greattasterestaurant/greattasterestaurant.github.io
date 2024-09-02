@@ -1,7 +1,7 @@
 <template>
   <div>
     <dl>
-      <template v-for="day in possiblyCondensedDays" :key="day.dayOfWeek">
+      <template v-for="day in condensedDays" :key="day.dayOfWeek">
         <dt>{{ day.dayOfWeek }}</dt>
         <dd>{{ day.openTime }}–{{ day.closeTime }}</dd>
       </template>
@@ -21,17 +21,10 @@ interface Day {
 }
 
 const props = defineProps<{
-  noCondense?: boolean
   days: readonly Day[]
 }>()
 
-const possiblyCondensedDays = computed(() => {
-  if (props.noCondense) {
-    return props.days
-  }
-
-  return condenseDays(props.days)
-})
+const condensedDays = computed(() => condenseDays(props.days))
 </script>
 
 <style scoped>
