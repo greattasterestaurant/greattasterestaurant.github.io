@@ -4,7 +4,10 @@
       <template v-for="day in condensedDays" :key="day.days">
         <dt>{{ day.days }}</dt>
         <dd>
-          {{ day.hours.open ? `${day.hours.openTime}–${day.hours.closeTime}` : 'Closed' }}
+          {{ day.hours.length === 0
+            ? 'Closed'
+            : day.hours.map(hours => `${hours.openTime}–${hours.closeTime}`).join(', ')
+          }}
         </dd>
       </template>
     </dl>

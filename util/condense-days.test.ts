@@ -15,27 +15,24 @@ test('condenses consecutive weekdays', () => {
   expect(condenseDays(days)).toEqual([
     {
       days: 'Sunday',
-      hours: {
-        open: true,
+      hours: [{
         openTime: '12pm',
         closeTime: '9:30pm'
-      }
+      }]
     },
     {
       days: 'Monday–Thursday',
-      hours: {
-        open: true,
+      hours: [{
         openTime: '11am',
         closeTime: '9:30pm'
-      }
+      }]
     },
     {
       days: 'Friday–Saturday',
-      hours: {
-        open: true,
+      hours: [{
         openTime: '11am',
         closeTime: '10pm'
-      }
+      }]
     }
   ] satisfies DaysDisplayed[])
 })
@@ -54,25 +51,21 @@ describe('handles closed days', () => {
     expect(condenseDays(days)).toEqual([
       {
         days: 'Sunday',
-        hours: {
-          open: false
-        }
+        hours: []
       },
       {
         days: 'Monday–Thursday',
-        hours: {
-          open: true,
+        hours: [{
           openTime: '11am',
           closeTime: '9:30pm'
-        }
+        }]
       },
       {
         days: 'Friday–Saturday',
-        hours: {
-          open: true,
+        hours: [{
           closeTime: '10pm',
           openTime: '11am'
-        }
+        }]
       }
     ] satisfies DaysDisplayed[])
   })
@@ -91,41 +84,81 @@ describe('handles closed days', () => {
     expect(condenseDays(days)).toEqual([
       {
         days: 'Sunday',
-        hours: {
-          open: true,
+        hours: [{
           closeTime: '9:30pm',
           openTime: '12pm'
-        }
+        }]
       },
       {
         days: 'Monday–Tuesday',
-        hours: {
-          open: true,
+        hours: [{
           closeTime: '9:30pm',
           openTime: '11am'
-        }
+        }]
       },
       {
         days: 'Wednesday',
-        hours: {
-          open: false
-        }
+        hours: []
       },
       {
         days: 'Thursday',
-        hours: {
-          open: true,
+        hours: [{
           closeTime: '9:30pm',
           openTime: '11am'
-        }
+        }]
       },
       {
         days: 'Friday–Saturday',
-        hours: {
-          open: true,
+        hours: [{
           closeTime: '10pm',
           openTime: '11am'
-        }
+        }]
+      }
+    ] satisfies DaysDisplayed[])
+  })
+})
+
+describe('non-continuous open hours', () => {
+  test('partially open Sunday', () => {
+    const days: readonly HoursOfDay[] = [
+      { dayOfWeek: 'Sunday', openTime: '12pm', closeTime: '3pm' },
+      { dayOfWeek: 'Sunday', openTime: '5pm', closeTime: '9:30pm' },
+
+      { dayOfWeek: 'Monday', openTime: '11am', closeTime: '9:30pm' },
+      { dayOfWeek: 'Tuesday', openTime: '11am', closeTime: '9:30pm' },
+      { dayOfWeek: 'Wednesday', openTime: '11am', closeTime: '9:30pm' },
+      { dayOfWeek: 'Thursday', openTime: '11am', closeTime: '9:30pm' },
+      { dayOfWeek: 'Friday', openTime: '11am', closeTime: '10pm' },
+      { dayOfWeek: 'Saturday', openTime: '11am', closeTime: '10pm' }
+    ]
+
+    expect(condenseDays(days)).toEqual([
+      {
+        days: 'Sunday',
+        hours: [
+          {
+            openTime: '12pm',
+            closeTime: '3pm'
+          },
+          {
+            openTime: '5pm',
+            closeTime: '9:30pm'
+          }
+        ]
+      },
+      {
+        days: 'Monday–Thursday',
+        hours: [{
+          openTime: '11am',
+          closeTime: '9:30pm'
+        }]
+      },
+      {
+        days: 'Friday–Saturday',
+        hours: [{
+          openTime: '11am',
+          closeTime: '10pm'
+        }]
       }
     ] satisfies DaysDisplayed[])
   })

@@ -3,7 +3,7 @@ import { isConsecutiveDayOfWeek } from './is-consecutive-day-of-week'
 import { daysOfWeek } from './days-of-week'
 import type { DayOfWeek } from '~/types/Hours'
 
-const { keyBy } = lodash
+const { groupBy, pick } = lodash
 
 export interface HoursOfDay {
   readonly dayOfWeek: DayOfWeek
@@ -12,13 +12,8 @@ export interface HoursOfDay {
 }
 
 export interface HoursOpen {
-  readonly open: true
   readonly openTime: string
   readonly closeTime: string
-}
-
-export interface Closed {
-  readonly open: false
 }
 
 /**
@@ -26,7 +21,7 @@ export interface Closed {
  */
 interface DaysConsecutive {
   readonly daysRange: [DayOfWeek] | [DayOfWeek, DayOfWeek],
-  readonly hours: Closed | HoursOpen
+  readonly hours: readonly HoursOpen[]
 }
 
 /**
@@ -34,29 +29,27 @@ interface DaysConsecutive {
  */
 export interface DaysDisplayed {
   readonly days: string
-  readonly hours: Closed | HoursOpen
+  readonly hours: readonly HoursOpen[]
 }
 
 export function condenseDays (days: readonly HoursOfDay[]): DaysDisplayed[] {
-  // Note: This function doesn't currently non-contiguous open hours on the same day.
-  const dayOfWeekToOpenHours = keyBy(days, 'dayOfWeek')
+  const dayOfWeekToOpenHours = groupBy(days, 'dayOfWeek')
 
   const folded = daysOfWeek.reduce((acc: DaysConsecutive[], dayOfWeek: DayOfWeek): DaysConsecutive[] => {
-    const openHours = dayOfWeekToOpenHours[dayOfWeek]
-    const currentDayOpenHours: Closed | HoursOpen = openHours === undefined
-      ? { open: false }
-      : { open: true, openTime: openHours.openTime, closeTime: openHours.closeTime }
+    // Note: This does not run open hours ranges through a date parser and sort.
+    // Assuming the input data is already sorted.
+    const openHours: readonly HoursOpen[] = (dayOfWeekToOpenHours[dayOfWeek] ?? []).map(el => pick(el, ['openTime', 'closeTime']))
 
     const last = acc.pop()
 
     if (last === undefined) {
       return [{
         daysRange: [dayOfWeek],
-        hours: currentDayOpenHours
+        hours: openHours
       }]
     }
 
-    const continuous = isHoursSame(last.hours, currentDayOpenHours) &&
+    const continuous = hoursAreSame(last.hours, openHours) &&
       isConsecutiveDayOfWeek(last.daysRange[1] ?? last.daysRange[0], dayOfWeek)
     if (continuous) {
       return [
@@ -73,7 +66,7 @@ export function condenseDays (days: readonly HoursOfDay[]): DaysDisplayed[] {
       last,
       {
         daysRange: [dayOfWeek],
-        hours: currentDayOpenHours
+        hours: openHours
       }
     ]
   }, [])
@@ -84,14 +77,9 @@ export function condenseDays (days: readonly HoursOfDay[]): DaysDisplayed[] {
   }))
 }
 
-function isHoursSame (a: Closed | HoursOpen, b: Closed | HoursOpen) {
-  if (a.open && b.open) {
-    return a.openTime === b.openTime && a.closeTime === b.closeTime
-  }
-
-  if (!a.open && !b.open) {
-    return true
-  }
-
-  return false
+function hoursAreSame (a: readonly HoursOpen[], b: readonly HoursOpen[]) {
+  return a.length === b.length &&
+    a.every((hours, i) =>
+      hours.openTime === b[i]?.openTime &&
+      hours.closeTime === b[i]?.closeTime)
 }
