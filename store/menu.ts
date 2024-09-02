@@ -1,7 +1,9 @@
-import { keyBy } from 'lodash'
+import lodash from 'lodash'
 import { defineStore } from 'pinia'
 import type { Food } from '~~/types/Food'
 import type { Menu } from '~~/types/Menus'
+
+const { keyBy } = lodash
 
 const urlForResource = (resource: string) =>
   '/api/1.1/tables/' + resource + '/rows'

@@ -13,9 +13,11 @@
 
 <script lang="ts">
 import { addDays, formatDistance, format } from 'date-fns'
-import { mapValues } from 'lodash'
+import lodash from 'lodash'
 import isDateThanksgiving from '@/util/is-date-thanksgiving'
 import { useHoursStore } from '@/store/hours'
+
+const { mapValues } = lodash
 
 interface State {
   timeUntilSwitch: string
