@@ -11,10 +11,11 @@
 </template>
 
 <script setup lang="ts">
+import type { DayOfWeek } from '~/types/Hours'
 import { condenseDays } from '~/util/condense-days'
 
 interface Day {
-  dayOfWeek: string
+  dayOfWeek: DayOfWeek
   openTime: string
   closeTime: string
 }
