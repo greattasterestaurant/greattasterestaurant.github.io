@@ -4,7 +4,8 @@
     "start": "nuxt start",
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore ."
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
+    "test": "vitest"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.4",
@@ -19,6 +20,7 @@
     "@types/node": "^18.11.19",
     "eslint": "^8.33.0",
     "typescript": "~5.5.4",
+    "vitest": "^2.0.5",
     "vue-tsc": "2.0.29"
   }
 }
