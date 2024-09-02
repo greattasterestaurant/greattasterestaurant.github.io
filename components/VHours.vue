@@ -1,9 +1,11 @@
 <template>
   <div>
     <dl>
-      <template v-for="day in condensedDays" :key="day.dayOfWeek">
-        <dt>{{ day.dayOfWeek }}</dt>
-        <dd>{{ day.openTime }}–{{ day.closeTime }}</dd>
+      <template v-for="day in condensedDays" :key="day.days">
+        <dt>{{ day.days }}</dt>
+        <dd>
+          {{ day.hours.open ? `${day.hours.openTime}–${day.hours.closeTime}` : 'Closed' }}
+        </dd>
       </template>
     </dl>
     <p>Open 364 days. Closed on Thanksgiving.</p>
