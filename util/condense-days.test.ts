@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
-import { condenseDays } from './condense-days'
+import { condenseDays, type HoursOfDay } from './condense-days'
 
 test('condenses consecutive weekdays', () => {
-  const days = [
+  const days: readonly HoursOfDay[] = [
     { dayOfWeek: 'Sunday', openTime: '12pm', closeTime: '9:30pm' },
     { dayOfWeek: 'Monday', openTime: '11am', closeTime: '9:30pm' },
     { dayOfWeek: 'Tuesday', openTime: '11am', closeTime: '9:30pm' },
