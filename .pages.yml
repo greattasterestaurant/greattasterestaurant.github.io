@@ -1,0 +1,78 @@
+content:
+
+  - name: gallery
+    label: Gallery
+    path: content/gallery
+    type: collection
+    icon: image
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: image
+        label: Image
+        type: image
+        required: true
+
+  - name: hours
+    label: Hours
+    path: content/hours
+    type: collection
+    icon: clock
+
+  - name: reviews
+    label: Reviews
+    path: content/reviews
+    type: collection
+    icon: star
+    fields:
+      - name: author
+        label: Author
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: body
+        label: Content
+        type: text
+        required: true
+
+  - name: menus
+    label: Menus
+    path: content/menus
+    type: collection
+    icon: square-menu
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+
+      - name: description
+        label: Description
+        type: string
+        required: true
+
+      # Proper relations are planned.
+      # https://github.com/pages-cms/pages-cms/discussions/84
+      - name: parent
+        label: Parent
+        type: string
+        required: false
+
+      - name: food
+        label: Food
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Name
+            type: string
+            required: true
+          - name: price
+            label: Price
+            type: string
+            required: true
