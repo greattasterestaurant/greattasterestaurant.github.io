@@ -78,3 +78,7 @@ content:
             label: Price
             type: string
             required: true
+          - name: spicy
+            label: Spicy
+            type: boolean
+            default: false
