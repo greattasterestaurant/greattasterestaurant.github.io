@@ -45,6 +45,7 @@ content:
     path: content/menus
     type: collection
     icon: square-menu
+
     fields:
       - name: name
         label: Name
@@ -54,7 +55,7 @@ content:
       - name: description
         label: Description
         type: string
-        required: true
+        required: false
 
       # Proper relations are planned.
       # https://github.com/pages-cms/pages-cms/discussions/84
@@ -67,6 +68,7 @@ content:
         label: Food
         type: object
         list: true
+        required: false
         fields:
           - name: name
             label: Name
