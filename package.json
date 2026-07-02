@@ -17,10 +17,10 @@
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@types/lodash": "^4.14.191",
-    "@types/node": "^18.11.19",
-    "eslint": "^8.33.0",
-    "typescript": "~5.5.4",
-    "vitest": "^2.0.5",
-    "vue-tsc": "2.0.29"
+    "@types/node": "^26.1.0",
+    "eslint": "^10.6.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9",
+    "vue-tsc": "^3.3.6"
   }
 }
