@@ -72,8 +72,10 @@ export const useMenuStore = defineStore('menu', {
       }
 
       this.request()
+      let menus
+      let food
       try {
-        var [menus, food] = await Promise.all([
+        [menus, food] = await Promise.all([
           await fetch(`${apiBase}${menusUrl}`).then(res => res.json()),
           await fetch(`${apiBase}${foodUrl}`).then(res => res.json())
         ])

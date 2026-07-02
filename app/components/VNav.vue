@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li v-for="link in links" :key="link.to">
-        <NuxtLink :to="link.to" @click.native="click">
+        <NuxtLink :to="link.to" @click="click">
           {{ link.text }}
         </NuxtLink>
       </li>

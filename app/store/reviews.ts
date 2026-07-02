@@ -38,9 +38,10 @@ export const useReviewsStore = defineStore('reviews', {
       }
 
       this.request()
+      let json
       try {
         const res = await fetch(`${apiBase}${reviewsUrl}`)
-        var json = await res.json()
+        json = await res.json()
       } catch (err) {
         this.fail()
         throw err

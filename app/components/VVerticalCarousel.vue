@@ -13,7 +13,7 @@ interface Image {
   readonly alt?: string
 }
 
-const props = defineProps<{
+defineProps<{
   readonly images: readonly Image[]
 }>()
 </script>

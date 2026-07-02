@@ -14,7 +14,7 @@ interface Plate {
   readonly name: string
 }
 
-const props = defineProps<{
+defineProps<{
   readonly food: readonly Plate[]
 }>()
 </script>

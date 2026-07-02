@@ -53,9 +53,10 @@ export const useGalleryStore = defineStore('gallery', {
       }
 
       this.request()
+      let json
       try {
         const res = await fetch(`${apiBase}${galleryUrl}`)
-        var json = await res.json()
+        json = await res.json()
       } catch (err) {
         this.fail()
         throw err
