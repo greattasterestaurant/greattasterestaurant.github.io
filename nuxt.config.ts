@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxt/eslint'],
 
   // Recommended to be set when running nuxt dev.
   // https://nuxt.com/docs/api/nuxt-config#compatibilitydate
