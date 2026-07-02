@@ -8,11 +8,11 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.5.4",
+    "@pinia/nuxt": "^0.11.3",
     "date-fns": "^4.4.0",
     "lodash": "^4.17.10",
     "nuxt": "^4.4.8",
-    "pinia": "^2.0.30"
+    "pinia": "^3.0.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
