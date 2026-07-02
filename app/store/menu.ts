@@ -1,7 +1,7 @@
 import lodash from 'lodash'
 import { defineStore } from 'pinia'
-import type { Food } from '~~/types/Food'
-import type { Menu } from '~~/types/Menus'
+import type { Food } from '@/types/Food'
+import type { Menu } from '@/types/Menus'
 
 const { keyBy } = lodash
 
