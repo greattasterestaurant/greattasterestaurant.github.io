@@ -1,0 +1,32 @@
+[
+  {
+    "dayOfWeek": "Sunday",
+    "openTime": "12:00:00",
+    "closeTime": "21:30:00"
+  },
+  {
+    "dayOfWeek": "Tuesday",
+    "openTime": "11:00:00",
+    "closeTime": "21:30:00"
+  },
+  {
+    "dayOfWeek": "Wednesday",
+    "openTime": "11:00:00",
+    "closeTime": "21:30:00"
+  },
+  {
+    "dayOfWeek": "Thursday",
+    "openTime": "11:00:00",
+    "closeTime": "21:30:00"
+  },
+  {
+    "dayOfWeek": "Friday",
+    "openTime": "11:00:00",
+    "closeTime": "22:00:00"
+  },
+  {
+    "dayOfWeek": "Saturday",
+    "openTime": "11:00:00",
+    "closeTime": "22:00:00"
+  }
+]

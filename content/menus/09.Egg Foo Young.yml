@@ -1,0 +1,19 @@
+name: Egg Foo Young
+parent: content/menus/03.Main Menu.yml
+sort: 9
+food:
+  - name: Roast Pork Egg Foo Young
+    price: 'qt: 15.75'
+    spicy: false
+  - name: Chicken Egg Foo Young
+    price: 'qt: 15.75'
+    spicy: false
+  - name: Beef Egg Foo Young
+    price: 'qt: 16.75'
+    spicy: false
+  - name: Vegetable Egg Foo Young
+    price: 'qt: 15.75'
+    spicy: false
+  - name: Shrimp Egg Foo Young
+    price: 'qt: 16.75'
+    spicy: false

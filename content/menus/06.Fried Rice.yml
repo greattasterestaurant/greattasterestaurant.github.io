@@ -1,0 +1,25 @@
+name: Fried Rice
+parent: content/menus/03.Main Menu.yml
+sort: 6
+food:
+  - name: Plain Fried Rice
+    price: 'pt:   5.50       qt:   9.50'
+    spicy: false
+  - name: Vegetable Fried Rice
+    price: 'pt: 7.25 qt: 13.50'
+    spicy: false
+  - name: Roast Pork Fried Rice
+    price: 'pt: 7.25 qt: 13.50'
+    spicy: false
+  - name: Shrimp Fried Rice
+    price: 'pt:   8.25       qt: 15.50'
+    spicy: false
+  - name: Chicken Fried Rice
+    price: 'pt: 7.25 qt: 13.50'
+    spicy: false
+  - name: Beef Fried Rice
+    price: 'pt: 8.25 qt: 15.50'
+    spicy: false
+  - name: House Special Fried Rice
+    price: 'pt: 8.75 qt: 16.50'
+    spicy: false

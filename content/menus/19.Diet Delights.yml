@@ -1,0 +1,12 @@
+name: Diet Delights
+sort: 19
+food:
+  - name: Steam Mixed Vegetable
+    price: '15.00'
+    spicy: false
+  - name: Steam Shrimp w. Mixed Veg.
+    price: '19.25'
+    spicy: false
+  - name: Steam Chicken w. Mixed Veg.
+    price: '17.75'
+    spicy: false

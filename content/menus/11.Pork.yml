@@ -1,0 +1,22 @@
+name: Pork
+parent: content/menus/03.Main Menu.yml
+sort: 11
+food:
+  - name: Roast Pork w. Snow Peas
+    price: 'pt:   9.00    qt: 17.75'
+    spicy: false
+  - name: Roast Pork with Mix Vegetables
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Moo Shu Pork (w. 4 Pancakes)
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Double Cooked Pork
+    price: 'qt: 17.75'
+    spicy: true
+  - name: Roast Pork with Broccoli
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Roast Pork with Garlic Sauce
+    price: 'qt: 17.75'
+    spicy: true

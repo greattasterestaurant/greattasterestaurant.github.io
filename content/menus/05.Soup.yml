@@ -1,0 +1,31 @@
+name: Soup
+parent: content/menus/03.Main Menu.yml
+sort: 5
+food:
+  - name: Wonton Soup
+    price: 'pt: 4.75 qt: 8.50'
+    spicy: false
+  - name: Egg Drop Soup
+    price: 'pt: 4.50 qt: 8.25'
+    spicy: false
+  - name: Wonton Egg Drop Soup
+    price: 'pt: 5.00 qt: 10.00'
+    spicy: false
+  - name: Hot and Sour Soup
+    price: 'pt: 5.00 qt: 10.00'
+    spicy: true
+  - name: Veg. w. Bean Curd Soup (For 2)
+    price: '9.50'
+    spicy: false
+  - name: Seafood Soup (For 2)
+    price: '12.00'
+    spicy: false
+  - name: Rainbow Soup (For 2)
+    price: '10.50'
+    spicy: false
+  - name: Seafood Hot and Sour Soup
+    price: '12.00'
+    spicy: true
+  - name: Chicken Rice or Noodle Soup
+    price: 'pt: 4.50 qt: 8.50'
+    spicy: false

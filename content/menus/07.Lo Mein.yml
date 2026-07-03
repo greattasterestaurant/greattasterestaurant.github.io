@@ -1,0 +1,28 @@
+name: Lo Mein
+parent: content/menus/03.Main Menu.yml
+sort: 7
+food:
+  - name: Plain Lo Mein
+    price: 'pt:   6.75       qt:   12.00'
+    spicy: false
+  - name: Vegetable Lo Mein
+    price: 'pt: 7.75 qt: 14.50'
+    spicy: false
+  - name: Roast Pork Lo Mein
+    price: 'pt: 7.75 qt: 14.50'
+    spicy: false
+  - name: Beef Lo Mein
+    price: 'pt: 8.75 qt: 16.50'
+    spicy: false
+  - name: Chicken Lo Mein
+    price: 'pt: 7.75 qt: 14.50'
+    spicy: false
+  - name: Shrimp Lo Mein
+    price: 'pt:   8.75     qt: 16.50'
+    spicy: false
+  - name: House Special Lo Mein
+    price: 'pt:   9.00       qt: 17.50'
+    spicy: false
+  - name: House Special Chow Mei Fun (Thin Angel Hair) or Chow Fun (Broad Noodle)
+    price: '17.50'
+    spicy: false

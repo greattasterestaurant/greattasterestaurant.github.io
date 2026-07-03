@@ -1,10 +1,16 @@
+media:
+  input: public/uploads
+  output: /uploads
+  rename: random
+
 content:
 
   - name: gallery
     label: Gallery
     path: content/gallery
     type: collection
-    icon: image
+    format: yaml
+    filename: "{primary}.yml"
     fields:
       - name: name
         label: Name
@@ -13,19 +19,40 @@ content:
       - name: image
         label: Image
         type: image
-        required: true
+      - name: food
+        label: Food
+        type: reference
+        required: false
+        options:
+          collection: food
 
   - name: hours
     label: Hours
-    path: content/hours
-    type: collection
-    icon: clock
+    path: content/hours.json
+    type: file
+    list: true
+    format: json
+    fields:
+      - name: dayOfWeek
+        label: Day of Week
+        type: select
+        options:
+          values: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+      - name: openTime
+        label: Open Time
+        type: string
+      - name: closeTime
+        label: Close Time
+        type: string
 
   - name: reviews
     label: Reviews
     path: content/reviews
     type: collection
-    icon: star
+    format: yaml
+    filename:
+      template: "{year}-{month}-{day}-{hour}:{minute}:{second}.md"
+      field: create
     fields:
       - name: author
         label: Author
@@ -35,6 +62,13 @@ content:
         label: Date
         type: date
         required: true
+      - name: rating
+        label: Rating
+        type: number
+        required: true
+        options:
+          min: 1
+          max: 5
       - name: body
         label: Content
         type: text
@@ -44,7 +78,11 @@ content:
     label: Menus
     path: content/menus
     type: collection
-    icon: square-menu
+    format: yaml
+    filename:
+      template: "{primary}.yml"
+      field: create
+
     fields:
       - name: name
         label: Name
@@ -54,19 +92,20 @@ content:
       - name: description
         label: Description
         type: string
-        required: true
+        required: false
 
-      # Proper relations are planned.
-      # https://github.com/pages-cms/pages-cms/discussions/84
       - name: parent
         label: Parent
-        type: string
+        type: reference
         required: false
+        options:
+          collection: menus
 
       - name: food
         label: Food
         type: object
         list: true
+        required: false
         fields:
           - name: name
             label: Name
@@ -76,3 +115,7 @@ content:
             label: Price
             type: string
             required: true
+          - name: spicy
+            label: Spicy
+            type: boolean
+            default: false

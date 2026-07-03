@@ -1,0 +1,19 @@
+name: Vegetable
+parent: content/menus/03.Main Menu.yml
+sort: 10
+food:
+  - name: Buddhist Delight
+    price: '15.00'
+    spicy: false
+  - name: Broccoli with Garlic Sauce
+    price: '15.00'
+    spicy: true
+  - name: Eggplant with Garlic Sauce
+    price: '15.00'
+    spicy: true
+  - name: Bean Curd Homestyle
+    price: '15.00'
+    spicy: true
+  - name: General Tso's Bean Curd
+    price: '16.75'
+    spicy: true

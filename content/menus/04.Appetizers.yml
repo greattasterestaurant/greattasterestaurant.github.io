@@ -1,0 +1,60 @@
+name: Appetizers
+parent: content/menus/03.Main Menu.yml
+sort: 4
+food:
+  - name: Egg Roll (1)
+    price: '3.25'
+    spicy: false
+  - name: Crispy Spring Roll (1)
+    price: '3.25'
+    spicy: false
+  - name: Cold or Hot Sesame Noodle
+    price: '8.00'
+    spicy: false
+  - image:
+      meta:
+        table: directus_files
+        type: item
+      data:
+        id: 4
+        name: 00000000004.jpg
+        url: /storage/uploads/00000000004.jpg
+        thumbnail_url: /storage/uploads/thumbs/4.jpg
+        old_thumbnail_url: /storage/uploads/thumbs/00000000004-jpg-160-160-true.jpg
+        html: null
+    name: Bar-B-Q Spare Ribs
+    price: 'S: 14.00 L: 23.00'
+    spicy: false
+  - name: Coconut Shrimp (4)
+    price: '13.00'
+    spicy: false
+  - name: Boneless Ribs
+    price: 'S: 14.00 L: 24.00'
+    spicy: false
+  - name: Chicken Wings (5)
+    price: '14.00'
+    spicy: false
+  - name: Chicken Fingers (Lg.)
+    price: '15.00'
+    spicy: false
+  - name: Teriyaki Beef (4)
+    price: '13.00'
+    spicy: false
+  - name: Dumpling Fried or Steamed (6)
+    price: '12.00'
+    spicy: false
+  - name: Vegtable Dumpling (6)
+    price: '12.00'
+    spicy: false
+  - name: Scallion Pan Cake
+    price: '12.00'
+    spicy: false
+  - name: Jumbo Shrimp Cutlet (2)
+    price: '10.00'
+    spicy: false
+  - name: Crab Rangoon (6)
+    price: '10.00'
+    spicy: false
+  - name: Pu Pu Platter (For 2)
+    price: '29.00'
+    spicy: false

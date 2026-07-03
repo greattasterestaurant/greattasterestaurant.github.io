@@ -1,0 +1,25 @@
+name: Beef
+parent: content/menus/03.Main Menu.yml
+sort: 13
+food:
+  - name: Pepper Steak w. Onions
+    price: 'pt:   10.00       qt: 19.25'
+    spicy: false
+  - name: Moo Shu Beef (w. 4 Pancakes)
+    price: 'qt: 19.25'
+    spicy: false
+  - name: Beef w. Snow Peas
+    price: 'pt:   10.00      qt: 19.25'
+    spicy: false
+  - name: Beef w. Broccoli
+    price: 'qt: 19.25'
+    spicy: false
+  - name: Beef w. Garlic Sauce
+    price: 'qt: 19.25'
+    spicy: true
+  - name: Sa Cha Beef
+    price: 'qt: 19.25'
+    spicy: true
+  - name: Beef w. Mixed Veg.
+    price: 'qt: 19.25'
+    spicy: false

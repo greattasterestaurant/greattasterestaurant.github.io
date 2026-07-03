@@ -1,0 +1,19 @@
+name: Chow Mein
+parent: content/menus/03.Main Menu.yml
+sort: 8
+food:
+  - name: Chicken Chow Mein
+    price: 'pt:   7.50       qt:   14.50'
+    spicy: false
+  - name: Beef Chow Mein
+    price: 'pt:   8.50       qt: 16.50'
+    spicy: false
+  - name: Vegetable Chow Mein
+    price: 'pt:   7.50       qt:   14.50'
+    spicy: false
+  - name: Shrimp Chow Mein
+    price: 'pt:   8.50       qt: 16.50'
+    spicy: false
+  - name: House Special Chow Mein
+    price: 'pt:   9.00      qt: 17.50'
+    spicy: false

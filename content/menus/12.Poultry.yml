@@ -1,0 +1,37 @@
+name: Poultry
+parent: content/menus/03.Main Menu.yml
+sort: 12
+food:
+  - name: Moo Shu Chicken (w. 4 Pancakes)
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Chicken w. Snow Peas
+    price: 'pt:   9.00    qt: 17.75'
+    spicy: false
+  - name: Sliced Chicken w. Garlic Sauce
+    price: 'qt: 17.75'
+    spicy: true
+  - name: Sliced Chicken w. Broccoli
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Diced Chicken w. Cashew Nuts
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Sweet and Sour Chicken
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Chicken w. Mixed Vegetables
+    price: 'qt: 17.75'
+    spicy: false
+  - name: Kung Pao Chicken
+    price: 'qt: 17.75'
+    spicy: true
+  - name: Lemon Chicken
+    price: 'qt: 19.00'
+    spicy: false
+  - name: Orange Chicken
+    price: 'qt: 19.00'
+    spicy: true
+  - name: Sesame Chicken
+    price: 'qt: 19.00'
+    spicy: true

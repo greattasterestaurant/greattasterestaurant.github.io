@@ -1,0 +1,58 @@
+description: All Combo Served with Pork Fried Rice
+name: Special Combination Plates
+sort: 17
+food:
+  - name: Chicken or Shrimp Chow Mein, Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: Boneless Ribs, Egg Roll
+    price: '15.25'
+    spicy: false
+  - name: Pepper Steak, Egg Roll
+    price: '14.75'
+    spicy: false
+  - name: Bar-B-Q Spare Ribs, Egg Roll
+    price: '14.75'
+    spicy: false
+  - name: Shrimp Lobster Sauce, Egg Roll
+    price: '15.25'
+    spicy: false
+  - name: Sesame Chicken, Egg Roll
+    price: '14.75'
+    spicy: true
+  - name: Roast Pork Egg Foo Young, Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: Sweet & Sour Chicken, Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: Roast Pork Lo Mein, Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: Broccoli Chicken, Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: Broccoli Beef, Egg Roll
+    price: '14.75'
+    spicy: false
+  - name: Teriyaki Beef, Egg Roll
+    price: '15.25'
+    spicy: false
+  - name: Chicken Finger, Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: Chicken w. Garlic Sauce Egg Roll
+    price: '14.00'
+    spicy: true
+  - name: Chicken w. Mixed Veg., Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: Chicken w. Cashew Nuts, Egg Roll
+    price: '14.00'
+    spicy: false
+  - name: General Tso's Chicken, Egg Roll
+    price: '14.75'
+    spicy: true
+  - name: Shrimp w. Broccoli, Egg Roll
+    price: '14.75'
+    spicy: false

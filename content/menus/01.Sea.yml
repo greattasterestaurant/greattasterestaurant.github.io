@@ -1,0 +1,68 @@
+name: Sea
+parent: content/menus/00.Great Taste Specials.yml
+sort: 1
+food:
+  - description: >-
+      Pan seared sea bass garnished with minced vegetables, crunchy pine nuts in
+      hunan sauce.
+    name: Nutty Sea Bass
+    price: '39.00'
+    spicy: false
+  - description: >-
+      Tangerine beef lovers can't wait to try our same tangerine sauce on
+      shrimp.
+    name: Tangerine Prawns
+    price: '22.00'
+    spicy: true
+  - name: Seafood with Pan-Fried Noodles
+    price: '23.00'
+    spicy: false
+  - image:
+      meta:
+        table: directus_files
+        type: item
+      data:
+        id: 9
+        name: 00000000009.jpg
+        url: /storage/uploads/00000000009.jpg
+        thumbnail_url: /storage/uploads/thumbs/9.jpg
+        old_thumbnail_url: /storage/uploads/thumbs/00000000009-jpg-160-160-true.jpg
+        html: null
+    name: Seafood Delight
+    price: '22.00'
+    spicy: false
+  - name: Sizzling Scallops with Sa Sha Sauce
+    price: '23.00'
+    spicy: true
+  - name: Tasty Jumbo Shrimp
+    price: '22.00'
+    spicy: false
+  - name: Great Taste Lobster
+    price: Seasonal
+    spicy: false
+  - name: Live Lobsters From The Tank
+    price: Seasonal
+    spicy: false
+  - name: Peppercorn Shrimp
+    price: '22.00'
+    spicy: true
+  - image:
+      meta:
+        table: directus_files
+        type: item
+      data:
+        id: 6
+        name: 00000000006.jpg
+        url: /storage/uploads/00000000006.jpg
+        thumbnail_url: /storage/uploads/thumbs/6.jpg
+        old_thumbnail_url: /storage/uploads/thumbs/00000000006-jpg-160-160-true.jpg
+        html: null
+    name: Crispy Jumbo Shrimp with Honey Walnuts
+    price: '23.00'
+    spicy: false
+  - description: >-
+      Fresh flounder for two styles, crispy tangy garlic sauce or steamed with
+      ginger and scallion.
+    name: Catch of the day
+    price: Seasonal
+    spicy: false

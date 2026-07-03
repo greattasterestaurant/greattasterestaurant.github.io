@@ -1,0 +1,16 @@
+name: Side Order
+parent: content/menus/03.Main Menu.yml
+sort: 16
+food:
+  - name: Extra White Rice
+    price: 'pt:   2.50       qt:   5.00'
+    spicy: false
+  - name: Extra Brown Rice
+    price: 'pt:   2.50       qt:   5.00'
+    spicy: false
+  - name: Extra Fried Noodles
+    price: 'L Bag: 2.00'
+    spicy: false
+  - name: Fortune Cookies (6)
+    price: 'Per Bag: 1.00'
+    spicy: false

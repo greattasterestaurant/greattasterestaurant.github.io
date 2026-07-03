@@ -1,0 +1,139 @@
+description: >-
+  with Pork Fried Rice, White or Brown Rice and Choice of Wonton, Egg Drop or
+  Hot & Sour Soup\nMonday - Saturday: 11:00 AM - 3:00 PM
+name: Lunch Plates
+sort: 18
+food:
+  - name: Beef with Garlic Sauce
+    price: '12.75'
+    spicy: true
+  - name: Tangerine Beef
+    price: '14.25'
+    spicy: true
+  - name: Beef Teriyaki
+    price: '14.25'
+    spicy: false
+  - name: Beef with Mixed Vegetables
+    price: '12.75'
+    spicy: false
+  - name: Happy Family
+    price: '13.50'
+    spicy: false
+  - name: Beef with Broccoli
+    price: '12.75'
+    spicy: false
+  - name: Pepper Steak
+    price: '12.75'
+    spicy: false
+  - name: Beef with Snow Pea Pods
+    price: '12.75'
+    spicy: false
+  - name: Twice Cooked Pork
+    price: '12.00'
+    spicy: true
+  - name: Roast Pork with Garlic Sauce
+    price: '12.00'
+    spicy: true
+  - name: Roast Pork or Chicken Lo Mein
+    price: '12.00'
+    spicy: false
+  - name: Boneless Spare Ribs
+    price: '14.25'
+    spicy: false
+  - name: Barbecued Spare Ribs
+    price: '14.25'
+    spicy: false
+  - name: Chicken Wings
+    price: '14.75'
+    spicy: false
+  - name: Moo Shu Chicken or Pork
+    price: '12.00'
+    spicy: false
+  - image:
+      meta:
+        table: directus_files
+        type: item
+      data:
+        id: 7
+        name: 00000000007.jpg
+        url: /storage/uploads/00000000007.jpg
+        thumbnail_url: /storage/uploads/thumbs/7.jpg
+        old_thumbnail_url: /storage/uploads/thumbs/00000000007-jpg-160-160-true.jpg
+        html: null
+    name: Lemon Chicken
+    price: '13.25'
+    spicy: false
+  - name: Sesame Chicken
+    price: '12.75'
+    spicy: true
+  - name: Chicken with Cashew Nuts
+    price: '12.00'
+    spicy: false
+  - name: Chicken with Garlic Sauce
+    price: '12.00'
+    spicy: true
+  - image:
+      meta:
+        table: directus_files
+        type: item
+      data:
+        id: 10
+        name: 00000000010.jpg
+        url: /storage/uploads/00000000010.jpg
+        thumbnail_url: /storage/uploads/thumbs/10.jpg
+        old_thumbnail_url: /storage/uploads/thumbs/00000000010-jpg-160-160-true.jpg
+        html: null
+    name: General Tso's Chicken
+    price: '12.75'
+    spicy: true
+  - name: Curry Chicken with Onions
+    price: '12.00'
+    spicy: true
+  - name: Kung Po Chicken
+    price: '12.00'
+    spicy: true
+  - name: Sweet & Sour Chicken
+    price: '12.00'
+    spicy: false
+  - name: Chicken with Broccoli
+    price: '12.00'
+    spicy: false
+  - name: Chicken with Mixed Vegetables
+    price: '12.00'
+    spicy: false
+  - name: Sliced Scallops with Garlic Sauce
+    price: '14.25'
+    spicy: true
+  - name: Shrimp with Broccoli
+    price: '12.75'
+    spicy: false
+  - name: Shrimp Szechuan Style
+    price: '12.75'
+    spicy: true
+  - name: Kung Pao Shrimp
+    price: '12.75'
+    spicy: true
+  - name: Shrimp with Mixed Vegetables
+    price: '12.75'
+    spicy: false
+  - name: Shrimp with Garlic Sauce
+    price: '12.25'
+    spicy: true
+  - name: Shrimp with Lobster Sauce
+    price: '14.25'
+    spicy: false
+  - name: Mixed Chinese Vegetables
+    price: '12.00'
+    spicy: false
+  - name: Eggplant with Garlic Sauce
+    price: '12.00'
+    spicy: true
+  - name: Broccoli with Garlic Sauce
+    price: '12.00'
+    spicy: true
+  - name: Egg Foo Young (Pork, Chicken, Beef or Shrimp)
+    price: '12.00'
+    spicy: false
+  - name: Chow Mein (Pork, Chicken, Beef or Shrimp)
+    price: '12.00'
+    spicy: false

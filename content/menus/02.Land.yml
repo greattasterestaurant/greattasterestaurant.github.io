@@ -1,0 +1,68 @@
+name: Land
+parent: content/menus/00.Great Taste Specials.yml
+sort: 2
+food:
+  - name: Happy Family
+    price: '22.00'
+    spicy: false
+  - name: Dragon Meets Phoenix
+    price: '22.00'
+    spicy: true
+  - name: Tangerine Beef
+    price: '23.00'
+    spicy: true
+  - name: Kung Pao Delight
+    price: '21.00'
+    spicy: true
+  - name: General Tso's Chicken
+    price: '18.50'
+    spicy: true
+  - description: >-
+      Tender sliced white meat chicken with broccoli, snow peas and shitake
+      mushrooms cooked in light sauce.
+    name: Dr. Blau's Special
+    price: '18.50'
+    spicy: false
+  - description: >-
+      One of the most sophisticated art of Chinese cooking, we prepare well in
+      advance, the duck is served w. homemade pancakes, scallion & special
+      sauce.
+    image:
+      meta:
+        table: directus_files
+        type: item
+      data:
+        id: 8
+        name: 00000000008.jpg
+        url: /storage/uploads/00000000008.jpg
+        thumbnail_url: /storage/uploads/thumbs/8.jpg
+        old_thumbnail_url: /storage/uploads/thumbs/00000000008-jpg-160-160-true.jpg
+        html: null
+    name: Peking Duck
+    price: '60.00'
+    spicy: false
+  - description: >-
+      A unique combination of three different dishes mongolian beef, chicken
+      with snow peas and shrimp szechuan sauce.
+    name: Triple Delight (for 2)
+    price: '32.00'
+    spicy: true
+  - name: Sizzling Mongolian Beef
+    price: '20.50'
+    spicy: true
+  - name: Hunan Classic
+    price: '22.00'
+    spicy: true
+  - description: >-
+      Beef, chicken, roast pork and fresh vegetables in traditional brown sauce
+      topped with jumbo shrimp, norwegian scallops and king crab meat in light
+      sauce.
+    name: Mount Fuji
+    price: '26.00'
+    spicy: false
+  - name: Crispy Duck
+    price: '29.00'
+    spicy: false
+  - name: Spinach Delight
+    price: '22.00'
+    spicy: false

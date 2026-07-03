@@ -1,0 +1,13 @@
+name: Curry
+parent: content/menus/03.Main Menu.yml
+sort: 15
+food:
+  - name: Curry Chicken w. Onion
+    price: '17.75'
+    spicy: true
+  - name: Curry Beef w. Onion
+    price: '19.25'
+    spicy: true
+  - name: Curry Shrimp w. Onion
+    price: '19.25'
+    spicy: true

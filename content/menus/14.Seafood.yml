@@ -1,0 +1,34 @@
+name: Seafood
+parent: content/menus/03.Main Menu.yml
+sort: 14
+food:
+  - name: Shrimp w. Lobster Sauce
+    price: 'pt:   11.00       qt: 21.00'
+    spicy: false
+  - name: Shrimp w. Snow Peas
+    price: 'pt:   10.00     qt: 19.25'
+    spicy: false
+  - name: Shrimp w. Garlic Sauce
+    price: 'qt: 19.25'
+    spicy: true
+  - name: Shrimp w. Cashew Nut
+    price: 'qt: 19.25'
+    spicy: false
+  - name: Kung Pao Shrimp
+    price: 'qt: 19.25'
+    spicy: true
+  - name: Shrimp w. Mixed Vegetable
+    price: 'qt: 19.25'
+    spicy: false
+  - name: Moo Shu Shrimp (w. 4 Pancakes)
+    price: 'qt: 19.25'
+    spicy: false
+  - name: Shrimp w. Broccoli
+    price: 'qt: 19.25'
+    spicy: false
+  - name: Jumbo Shrimp & Scallop with Garlic Sauce
+    price: 'qt: 23.00'
+    spicy: true
+  - name: Scallop w. Garlic Sauce
+    price: 'qt: 23.00'
+    spicy: true
